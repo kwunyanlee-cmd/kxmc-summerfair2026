@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Fair 2026 — King's Cross Methodist Church</title>
+<meta name="description" content="KXMC Summer Fair — Saturday 18 July 2026, 12pm–4pm, Finchley Catholic High School. Free entry, free parking. Food stalls, handmade crafts, games and more.">
+
+<!-- Favicon (browser tab icon) -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+
+<!-- Open Graph (WhatsApp, Facebook, etc. share preview) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="King's Cross Methodist Church">
+<meta property="og:title" content="Summer Fair 2026 — King's Cross Methodist Church">
+<meta property="og:description" content="Sat 18 July 2026, 12pm–4pm · Finchley Catholic High School, N12 8TA · Free entry & free parking. Food, crafts, games & more — bring the family! 免費入場，歡迎帶屋企人朋友一齊嚟！">
+<meta property="og:url" content="https://summerfair2026.kxmc.org.uk/">
+<meta property="og:image" content="https://summerfair2026.kxmc.org.uk/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_HK">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Summer Fair 2026 — King's Cross Methodist Church">
+<meta name="twitter:description" content="Sat 18 July 2026, 12pm–4pm · Finchley Catholic High School · Free entry & free parking. 免費入場，歡迎帶屋企人朋友一齊嚟！">
+<meta name="twitter:image" content="https://summerfair2026.kxmc.org.uk/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Noto+Sans+HK:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#3aa6d6;
+    --sunshine:#ffc83d;
+    --coral:#ff6f61;
+    --leaf:#5cb85c;
+    --grape:#5b59b4;
+    --berry:#e8417a;
+    --cream:#fbf7ee;
+    --ink:#214a63;
+    --ink-soft:#3f6377;
+    --paper:#ffffff;
+    --shadow:0 10px 30px rgba(33,74,99,.12);
+    --shadow-lg:0 18px 50px rgba(33,74,99,.18);
+    --display:'Baloo 2','Noto Sans HK',cursive;
+    --body:'Nunito','Noto Sans HK',sans-serif;
+    --rad:22px;
+  }
+  html[lang="zh"]{ --display:'Noto Sans HK','Baloo 2',sans-serif; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  /* ---- decorative confetti/splash background layer ---- */
+  .decor{
+    position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  }
+  .decor .dot{position:absolute;border-radius:50%;opacity:.5}
+  .decor .ring{position:absolute;border-radius:50%;border:6px solid;opacity:.32;background:transparent}
+  .decor .tri{position:absolute;width:0;height:0;opacity:.4}
+  .decor .blob{position:absolute;border-radius:46% 54% 60% 40%/52% 44% 56% 48%;opacity:.16;filter:blur(2px)}
+  /* keep content above the decor */
+  .topbar,header,.facts,section,footer{position:relative;z-index:2}
+  @media(max-width:760px){ .decor .blob{opacity:.12} .decor .dot,.decor .ring,.decor .tri{opacity:.35} }
+  @media(prefers-reduced-motion:reduce){ .decor *{animation:none!important} }
+  .zh-only{display:none}
+  html[lang="zh"] .en-only{display:none}
+  html[lang="zh"] .zh-only{display:inline}
+  html[lang="zh"] .zh-only.block{display:block}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:.6rem clamp(1rem,4vw,2.5rem);
+    background:rgba(251,247,238,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid rgba(33,74,99,.06);
+  }
+  .brand{display:flex;align-items:center;gap:.55rem;font-family:var(--display);font-weight:800;color:var(--ink);font-size:1rem;letter-spacing:.2px}
+  .brand .mark{
+    width:34px;height:34px;border-radius:50%;
+    background:conic-gradient(from 0deg,var(--coral),var(--sunshine),var(--leaf),var(--sky),var(--grape),var(--berry),var(--coral));
+    display:grid;place-items:center;color:#fff;font-size:1rem;box-shadow:var(--shadow)
+  }
+  .lang{
+    display:inline-flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden;font-family:var(--display);font-weight:700
+  }
+  .lang button{
+    border:0;background:transparent;color:var(--ink);
+    padding:.3rem .85rem;cursor:pointer;font:inherit;font-size:.85rem;transition:.2s
+  }
+  .lang button.active{background:var(--ink);color:#fff}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;text-align:center;
+    padding:clamp(2.5rem,7vw,5rem) 1.25rem clamp(3rem,8vw,5.5rem);
+    background:
+      radial-gradient(120% 90% at 50% -10%, #eaf6fb 0%, var(--cream) 60%);
+    overflow:hidden;
+  }
+  .bunting{position:absolute;top:0;left:-2%;width:104%;height:42px;display:flex;justify-content:space-around;align-items:flex-start;pointer-events:none}
+  .bunting span{width:0;height:0;border-left:17px solid transparent;border-right:17px solid transparent;border-top:26px solid;filter:drop-shadow(0 3px 2px rgba(0,0,0,.08))}
+  .sun{position:absolute;top:8%;right:7%;width:clamp(60px,11vw,96px);height:clamp(60px,11vw,96px);border-radius:50%;background:radial-gradient(circle at 40% 35%,#ffe07a,var(--sunshine));box-shadow:0 0 0 10px rgba(255,200,61,.18),0 0 0 22px rgba(255,200,61,.09);animation:bob 6s ease-in-out infinite}
+  .balloon{position:absolute;bottom:-30px;width:48px;height:60px;border-radius:50% 50% 48% 48%;opacity:.9;animation:bob 7s ease-in-out infinite}
+  .balloon:after{content:"";position:absolute;bottom:-26px;left:50%;width:1px;height:26px;background:rgba(33,74,99,.3)}
+  .b1{left:5%;background:var(--coral);animation-delay:.2s}
+  .b2{left:11%;bottom:10px;background:var(--sunshine);width:38px;height:48px;animation-delay:1.1s}
+  .b3{right:6%;background:var(--leaf);animation-delay:.6s}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+
+  .eyebrow{
+    position:relative;z-index:2;display:inline-block;
+    font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-soft);
+    background:#fff;padding:.4rem 1rem;border-radius:999px;box-shadow:var(--shadow);margin-bottom:1.3rem
+  }
+  .title{position:relative;z-index:2;font-family:'Baloo 2',cursive;line-height:.9;margin:.2rem 0}
+  .title .summer{display:block;font-family:'Baloo 2',cursive;font-size:clamp(3.2rem,15vw,8rem);font-weight:800;letter-spacing:1px}
+  .title .summer b:nth-child(1){color:var(--coral)}
+  .title .summer b:nth-child(2){color:var(--sunshine)}
+  .title .summer b:nth-child(3){color:var(--leaf)}
+  .title .summer b:nth-child(4){color:var(--sky)}
+  .title .summer b:nth-child(5){color:var(--grape)}
+  .title .summer b:nth-child(6){color:var(--berry)}
+  .title .fair{display:block;font-family:'Baloo 2',cursive;font-size:clamp(2.6rem,11vw,6rem);font-weight:800;color:var(--ink);font-style:italic;margin-top:-.15em}
+  .subtitle{position:relative;z-index:2;font-family:var(--display);font-weight:600;font-size:clamp(1.05rem,3.5vw,1.5rem);color:var(--ink);margin-top:.6rem}
+  .host{position:relative;z-index:2;color:var(--ink-soft);font-weight:700;margin-top:.35rem;font-size:.95rem}
+  .free{
+    position:absolute;top:0;left:0;z-index:6;
+    display:inline-flex;flex-direction:column;align-items:center;gap:.1rem;justify-content:center;
+    background:var(--sky);color:#fff;border-radius:50%;
+    width:110px;height:110px;
+    box-shadow:var(--shadow-lg);font-family:var(--display);font-weight:800;line-height:1.05;
+    cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;
+    will-change:transform
+  }
+  .free.grabbing{cursor:grabbing}
+  .free .big{font-size:1.1rem}
+  .free .sm{font-size:.7rem;font-weight:600;letter-spacing:.04em}
+  .free-spacer{height:36px;width:100%}
+  .free .hint{
+    position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+    font-family:var(--body);font-weight:700;font-size:.6rem;color:var(--ink-soft);
+    white-space:nowrap;opacity:.75;letter-spacing:.03em
+  }
+  @media(prefers-reduced-motion:reduce){ .free .hint{display:none} }
+
+  /* ---------- quick facts strip ---------- */
+  .facts{
+    position:relative;z-index:3;margin:-2rem auto 0;max-width:980px;width:92%;
+    background:var(--paper);border-radius:var(--rad);box-shadow:var(--shadow-lg);
+    display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden
+  }
+  .fact{padding:1.3rem 1rem;text-align:center;border-right:2px dashed rgba(33,74,99,.12)}
+  .fact:last-child{border-right:0}
+  .fact .ic{font-size:1.5rem}
+  .fact .lab{font-family:var(--display);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);margin-top:.3rem}
+  .fact .val{font-family:var(--display);font-weight:700;font-size:1.02rem;color:var(--ink);margin-top:.15rem}
+  .fact .val small{display:block;font-size:.8rem;font-weight:600;color:var(--ink-soft)}
+
+  /* ---------- CTA buttons ---------- */
+  .cta-row{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:1.6rem;position:relative;z-index:2}
+  .btn{
+    font-family:var(--display);font-weight:700;font-size:.95rem;
+    border:0;border-radius:999px;padding:.8rem 1.5rem;cursor:pointer;text-decoration:none;
+    display:inline-flex;align-items:center;gap:.5rem;transition:transform .15s,box-shadow .15s;box-shadow:var(--shadow)
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+  .btn-primary{background:var(--coral);color:#fff}
+  .btn-sun{background:var(--sunshine);color:var(--ink)}
+  .btn-sky{background:var(--sky);color:#fff}
+  .btn-ghost{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+
+  /* ---------- sections ---------- */
+  section.block{padding:clamp(2.6rem,7vw,4.5rem) clamp(1rem,5vw,2rem);max-width:1080px;margin:0 auto}
+  .sec-head{text-align:center;margin-bottom:2rem}
+  .sec-head .kicker{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
+  .sec-head h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,5vw,2.6rem);color:var(--ink);margin-top:.2rem;line-height:1.1}
+  .lead{max-width:680px;margin:.9rem auto 0;text-align:center;font-size:1.08rem;color:var(--ink-soft)}
+
+  /* stalls */
+  .stalls{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.1rem}
+  .stall{
+    background:var(--paper);border-radius:var(--rad);padding:1.6rem 1.3rem;box-shadow:var(--shadow);
+    border-top:6px solid;transition:transform .15s
+  }
+  .stall:hover{transform:translateY(-4px)}
+  .stall:nth-child(1){border-color:var(--coral)}
+  .stall:nth-child(2){border-color:var(--leaf)}
+  .stall:nth-child(3){border-color:var(--sunshine)}
+  .stall:nth-child(4){border-color:var(--sky)}
+  .stall .emoji{font-size:2.1rem}
+  .stall h3{font-family:var(--display);font-weight:700;font-size:1.25rem;margin:.5rem 0 .3rem;color:var(--ink)}
+  .stall p{color:var(--ink-soft);font-size:.96rem}
+
+  /* food gallery (expandable) */
+  .stall-food{cursor:pointer}
+  .stall-food .learn{
+    display:inline-flex;align-items:center;gap:.4rem;margin-top:.9rem;
+    font-family:var(--display);font-weight:800;font-size:1rem;color:#fff;
+    background:var(--coral);padding:.5rem 1rem;border-radius:999px;
+    box-shadow:var(--shadow);transition:transform .15s
+  }
+  .stall-food:hover .learn{transform:translateY(-2px)}
+  .stall-food .learn .chev{transition:transform .25s;font-size:1.15rem}
+  .foodgal{
+    grid-column:1/-1;margin:0;
+    max-height:0;overflow:hidden;opacity:0;
+    display:none;
+    transition:max-height .45s ease,opacity .35s ease,margin .35s ease;
+  }
+  /* expand only when toggled open (click/tap, all devices) */
+  .foodgal.open{display:block;max-height:1600px;opacity:1;margin-top:1.1rem}
+  .stall-food[aria-expanded="true"] .chev{transform:rotate(90deg)}
+  .foodgal-inner{
+    background:var(--paper);border-radius:var(--rad);box-shadow:var(--shadow);
+    padding:clamp(1.3rem,4vw,2rem);border-top:6px solid var(--coral)
+  }
+  .foodgal .tagline{font-family:var(--display);font-weight:700;color:var(--coral);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+  .foodgal h3{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,3.6vw,1.8rem);color:var(--ink);margin:.25rem 0 .5rem}
+  .foodgal .blurb{color:var(--ink-soft);max-width:60ch;margin-bottom:1.2rem}
+  .food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}
+  @media(max-width:600px){
+    .food-grid{grid-template-columns:1fr 1fr;gap:.7rem}
+  }
+  .food-item{border-radius:14px;overflow:hidden;background:var(--cream);box-shadow:var(--shadow);transition:transform .15s}
+  .food-item:hover{transform:translateY(-4px)}
+  .food-item img{width:100%;height:auto;display:block}
+  .food-item .ph{
+    aspect-ratio:3/4;display:grid;place-items:center;gap:.3rem;text-align:center;padding:1rem;
+    background:linear-gradient(135deg,#fff,var(--cream));color:var(--ink-soft)
+  }
+  .food-item .ph .pe{font-size:2.2rem}
+  .food-item .ph small{font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.05em}
+
+  /* highlights */
+  .why{background:linear-gradient(180deg,#eaf6fb,var(--cream));border-radius:28px}
+  .why-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:.5rem}
+  .why-item{display:flex;gap:.8rem;align-items:flex-start;background:#fff;padding:1.1rem 1.2rem;border-radius:18px;box-shadow:var(--shadow)}
+  .why-item .ic{font-size:1.5rem;line-height:1}
+  .why-item b{font-family:var(--display);display:block;color:var(--ink)}
+  .why-item span{color:var(--ink-soft);font-size:.93rem}
+
+  /* location */
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:stretch}
+  .loc-card{background:var(--paper);border-radius:var(--rad);padding:1.7rem;box-shadow:var(--shadow)}
+  .loc-card h3{font-family:var(--display);font-weight:700;font-size:1.3rem;margin-bottom:.2rem}
+  .loc-card .addr{color:var(--ink-soft);font-size:1.02rem;margin-bottom:1rem}
+  .loc-card ul{list-style:none;display:grid;gap:.6rem}
+  .loc-card li{display:flex;gap:.6rem;align-items:flex-start;color:var(--ink-soft);font-size:.96rem}
+  .loc-card li b{color:var(--ink);font-family:var(--display)}
+  .map{border-radius:var(--rad);overflow:hidden;box-shadow:var(--shadow);min-height:300px}
+  .map iframe{width:100%;height:100%;min-height:300px;border:0;display:block}
+
+  /* redevelopment — styled to match kxmc.org reprovision site */
+  .redev{
+    position:relative;overflow:hidden;border-radius:28px;
+    background:#0e3a4a url('/redev-bg.jpg') center/cover no-repeat;
+    color:#fff;padding:clamp(2.8rem,8vw,5rem) clamp(1.4rem,5vw,3rem);
+    text-align:center;box-shadow:var(--shadow-lg)
+  }
+  .redev:before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(14,42,58,.62),rgba(14,42,58,.78));
+  }
+  .redev > *{position:relative;z-index:1}
+  .redev .kicker{color:#cdb87a;font-family:Georgia,'Times New Roman',serif;font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:.78rem}
+  .redev h2{
+    font-family:Georgia,'Times New Roman',serif;font-weight:700;
+    font-size:clamp(1.7rem,4.8vw,2.6rem);margin:.5rem auto .9rem;color:#fff;
+    line-height:1.25;max-width:18ch;text-shadow:0 2px 12px rgba(0,0,0,.35)
+  }
+  .redev p{color:rgba(255,255,255,.92);font-size:1.04rem;max-width:62ch;margin:0 auto;line-height:1.7}
+  .redev .rrt{display:flex;gap:1.6rem;margin:1.4rem auto 0;flex-wrap:wrap;justify-content:center}
+  .redev .rrt span{font-family:Georgia,serif;font-weight:600}
+  .redev .rrt b{display:block;font-size:1.5rem;color:#cdb87a}
+  .redev .rrt small{color:rgba(255,255,255,.8);letter-spacing:.08em;text-transform:uppercase;font-size:.72rem}
+  .redev-cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem}
+  .btn-redev{background:#4BDD72;color:#0e2a36;font-family:var(--body);font-weight:800;letter-spacing:.02em}
+  .btn-redev-ghost{background:rgba(255,255,255,.12);color:#fff;border:2px solid rgba(255,255,255,.7);font-family:var(--body);font-weight:700}
+
+  /* faq */
+  .faq{max-width:760px;margin:0 auto}
+  details{background:var(--paper);border-radius:16px;box-shadow:var(--shadow);margin-bottom:.8rem;overflow:hidden}
+  summary{font-family:var(--display);font-weight:700;color:var(--ink);padding:1.05rem 1.3rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  summary::-webkit-details-marker{display:none}
+  summary:after{content:"+";font-size:1.4rem;color:var(--coral);transition:.2s}
+  details[open] summary:after{transform:rotate(45deg)}
+  details .ans{padding:0 1.3rem 1.15rem;color:var(--ink-soft)}
+
+  /* footer */
+  footer{background:#fff;border-top:3px dashed rgba(33,74,99,.12);padding:clamp(2rem,6vw,3rem) 1.25rem 2.5rem;text-align:center;margin-top:2rem}
+  footer .fbrand{font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--ink)}
+  footer .socials{display:flex;gap:1rem;justify-content:center;margin:1.1rem 0}
+  footer .socials a{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--cream);color:var(--ink);text-decoration:none;font-weight:800;font-family:var(--display);box-shadow:var(--shadow);transition:.15s}
+  footer .socials a:hover{transform:translateY(-3px);background:var(--sunshine)}
+  footer .fnote{color:var(--ink-soft);font-size:.9rem;margin-top:.6rem}
+  footer .share{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+
+  @media(max-width:760px){
+    .facts{grid-template-columns:1fr}
+    .fact{border-right:0;border-bottom:2px dashed rgba(33,74,99,.12)}
+    .fact:last-child{border-bottom:0}
+    .loc-grid{grid-template-columns:1fr}
+    .redev{text-align:center}
+    .redev .rrt{justify-content:center}
+    .redev-cta{align-items:center}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<!-- decorative background (alternate version) -->
+<div class="decor" aria-hidden="true">
+  <!-- paint-splash blobs in flyer palette, kept to the margins -->
+  <span class="blob" style="width:280px;height:280px;background:var(--sky);top:18%;left:-6%"></span>
+  <span class="blob" style="width:240px;height:240px;background:var(--coral);top:46%;right:-7%"></span>
+  <span class="blob" style="width:300px;height:300px;background:var(--leaf);top:72%;left:-8%"></span>
+  <span class="blob" style="width:220px;height:220px;background:var(--sunshine);top:90%;right:-6%"></span>
+  <span class="blob" style="width:200px;height:200px;background:var(--grape);top:4%;right:-5%"></span>
+  <!-- confetti dots -->
+  <span class="dot" style="width:14px;height:14px;background:var(--coral);top:12%;left:8%"></span>
+  <span class="dot" style="width:10px;height:10px;background:var(--sky);top:24%;right:10%"></span>
+  <span class="dot" style="width:16px;height:16px;background:var(--leaf);top:38%;left:5%"></span>
+  <span class="dot" style="width:11px;height:11px;background:var(--berry);top:52%;right:6%"></span>
+  <span class="dot" style="width:13px;height:13px;background:var(--sunshine);top:64%;left:9%"></span>
+  <span class="dot" style="width:9px;height:9px;background:var(--grape);top:78%;right:8%"></span>
+  <span class="dot" style="width:15px;height:15px;background:var(--sky);top:88%;left:6%"></span>
+  <span class="dot" style="width:10px;height:10px;background:var(--coral);top:32%;right:4%"></span>
+  <!-- small rings -->
+  <span class="ring" style="width:34px;height:34px;border-color:var(--sunshine);top:16%;right:14%"></span>
+  <span class="ring" style="width:26px;height:26px;border-color:var(--leaf);top:58%;left:13%"></span>
+  <span class="ring" style="width:30px;height:30px;border-color:var(--berry);top:84%;right:12%"></span>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="brand"><span class="mark">✦</span>
+    <span class="en-only">Summer Fair 2026 @ KXMC</span>
+    <span class="zh-only">夏日嘉年華 2026 @ 君王十字堂</span>
+  </div>
+  <div class="lang" role="group" aria-label="Language / 語言">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-zh" onclick="setLang('zh')">中</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="bunting" aria-hidden="true">
+    <span style="border-top-color:var(--coral)"></span>
+    <span style="border-top-color:var(--sunshine)"></span>
+    <span style="border-top-color:var(--leaf)"></span>
+    <span style="border-top-color:var(--sky)"></span>
+    <span style="border-top-color:var(--grape)"></span>
+    <span style="border-top-color:var(--berry)"></span>
+    <span style="border-top-color:var(--coral)"></span>
+    <span style="border-top-color:var(--sunshine)"></span>
+    <span style="border-top-color:var(--leaf)"></span>
+    <span style="border-top-color:var(--sky)"></span>
+  </div>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="balloon b1" aria-hidden="true"></div>
+  <div class="balloon b2" aria-hidden="true"></div>
+  <div class="balloon b3" aria-hidden="true"></div>
+
+  <span class="eyebrow">
+    <span class="en-only">Fundraising event · All welcome</span>
+    <span class="zh-only">慈善籌款 · 歡迎街坊參與</span>
+  </span>
+  <h1 class="title">
+    <span class="summer"><b>S</b><b>U</b><b>M</b><b>M</b><b>E</b><b>R</b></span>
+    <span class="fair">Fair</span>
+  </h1>
+  <p class="subtitle">
+    <span class="en-only">A summer afternoon of food, crafts &amp; games for all the family</span>
+    <span class="zh-only">夏日午後，美食、手工藝與遊戲，一家大細齊齊玩</span>
+  </p>
+  <p class="host">
+    <span class="en-only">In aid of King's Cross Methodist Church rebuilding project</span>
+    <span class="zh-only">為倫敦君王十字堂重建計劃籌款</span>
+  </p>
+
+  <div class="free-spacer" aria-hidden="true"></div>
+  <div class="free" id="freeBall" aria-hidden="false">
+    <span class="big">FREE</span>
+    <span class="sm en-only">ENTRY</span>
+    <span class="sm zh-only">免費入場</span>
+    <span class="hint"><span class="en-only">grab &amp; throw me!</span><span class="zh-only">捉住掟我啦！</span></span>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#location">
+      <span class="en-only">📍 Get directions</span><span class="zh-only">📍 交通路線</span>
+    </a>
+    <a class="btn btn-sun" id="calBtn" href="#" download="KXMC-Summer-Fair-2026.ics">
+      <span class="en-only">📅 Add to calendar</span><span class="zh-only">📅 加入行事曆</span>
+    </a>
+    <a class="btn btn-sky" href="#share">
+      <span class="en-only">💬 Invite friends</span><span class="zh-only">💬 邀請親友</span>
+    </a>
+  </div>
+</header>
+
+<!-- QUICK FACTS -->
+<div class="facts">
+  <div class="fact">
+    <div class="ic">📅</div>
+    <div class="lab"><span class="en-only">Date</span><span class="zh-only">日期</span></div>
+    <div class="val">Sat 18 July 2026<small><span class="en-only">Saturday</span><span class="zh-only">星期六</span></small></div>
+  </div>
+  <div class="fact">
+    <div class="ic">🕛</div>
+    <div class="lab"><span class="en-only">Time</span><span class="zh-only">時間</span></div>
+    <div class="val">12pm – 4pm</div>
+  </div>
+  <div class="fact">
+    <div class="ic">📍</div>
+    <div class="lab"><span class="en-only">Venue</span><span class="zh-only">地點</span></div>
+    <div class="val">Finchley Catholic High School<small>School Hall · N12 8TA</small></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="block" id="about">
+  <div class="sec-head">
+    <div class="kicker"><span class="en-only">What's on</span><span class="zh-only">活動簡介</span></div>
+    <h2><span class="en-only">A fun day out, for a good cause</span><span class="zh-only">同享歡樂，齊撐好事</span></h2>
+  </div>
+  <p class="lead">
+    <span class="en-only">Bring your family, friends and neighbours for an afternoon of food, handmade treasures and games. Entry is free and so is parking — just come along. Every bite and every game helps raise funds for the rebuilding of King's Cross Methodist Church.</span>
+    <span class="zh-only">帶埋屋企人、朋友同街坊，一齊嚟享受一個夏日午後 — 有美食、手工藝品同遊戲攤位。免費入場、免費泊車，唔使預先報名，直接嚟就得。你嘅每一口美食、每一個遊戲，都係支持緊君王十字堂嘅重建計劃。</span>
+  </p>
+</section>
+
+<!-- STALLS -->
+<section class="block" id="stalls">
+  <div class="sec-head">
+    <div class="kicker"><span class="en-only">At the fair</span><span class="zh-only">攤檔介紹</span></div>
+    <h2><span class="en-only">What you'll find</span><span class="zh-only">當日有咩玩</span></h2>
+  </div>
+  <div class="stalls">
+    <div class="stall stall-food" role="button" tabindex="0" aria-expanded="false" aria-controls="foodgal"
+         onclick="toggleFood(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFood(this);}">
+      <div class="emoji">🍢</div>
+      <h3><span class="en-only">Food Stalls</span><span class="zh-only">美食攤位</span></h3>
+      <p><span class="en-only">Homemade bites, sweet treats and drinks to enjoy on the day.</span><span class="zh-only">即場製作嘅美食、甜品同飲品，邊行邊食。</span></p>
+      <span class="learn">
+        <span class="en-only">See more!</span><span class="zh-only">睇更多！</span>
+        <span class="chev">›</span>
+      </span>
+    </div>
+    <div class="foodgal" id="foodgal">
+      <div class="foodgal-inner">
+        <div class="tagline"><span class="en-only">Authentic Homemade Asian Treats</span><span class="zh-only">地道亞洲住家風味</span></div>
+        <h3><span class="en-only">Homemade Asian Flavours</span><span class="zh-only">亞洲家常美食</span></h3>
+        <p class="blurb">
+          <span class="en-only">Discover a delicious line-up of food stalls serving home-style Asian snacks, sweets and drinks you won't find on the high street. Freshly made, full of flavour, and perfect to share. Bring your family and friends and tuck in!</span>
+          <span class="zh-only">嚟發掘一系列美食攤位，提供平時街上買唔到嘅住家風味亞洲小食、甜品同飲品。新鮮製作、夠晒惹味，最啱一齊分享。帶埋屋企人同朋友一齊嚟試啦！</span>
+        </p>
+        <div class="food-grid">
+          <div class="food-item"><img src="/stall-1.jpg" alt="Food stall 1" loading="lazy"></div>
+          <div class="food-item"><img src="/stall-2.jpg" alt="Food stall 2" loading="lazy"></div>
+          <div class="food-item"><img src="/stall-3.jpg" alt="Food stall 3" loading="lazy"></div>
+          <div class="food-item"><img src="/stall-4.jpg" alt="Food stall 4" loading="lazy"></div>
+          <div class="food-item"><img src="/stall-5.jpg" alt="Food stall 5" loading="lazy"></div>
+          <div class="food-item"><img src="/stall-6.jpg" alt="Food stall 6" loading="lazy"></div>
+          <div class="food-item"><div class="ph"><span class="pe">🧋</span><small><span class="en-only">Stall 7</span><span class="zh-only">攤位七</span></small></div></div>
+          <div class="food-item"><div class="ph"><span class="pe">🍢</span><small><span class="en-only">Stall 8</span><span class="zh-only">攤位八</span></small></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="stall">
+      <div class="emoji">🧸</div>
+      <h3><span class="en-only">Handmade Crafts</span><span class="zh-only">手工藝品</span></h3>
+      <p><span class="en-only">Lovingly made gifts and crafts — perfect to take home or give.</span><span class="zh-only">用心製作嘅精品同手作，買畀自己或者送禮都啱。</span></p>
+    </div>
+    <div class="stall">
+      <div class="emoji">🎯</div>
+      <h3><span class="en-only">Games</span><span class="zh-only">遊戲攤位</span></h3>
+      <p><span class="en-only">Spin, aim and play — fun games for kids and grown-ups alike.</span><span class="zh-only">大轉盤、投擲遊戲等等，大人細路都玩得開心。</span></p>
+    </div>
+    <div class="stall">
+      <div class="emoji">🎁</div>
+      <h3><span class="en-only">And more!</span><span class="zh-only">還有更多！</span></h3>
+      <p><span class="en-only">Plenty of surprises on the day — come and discover them.</span><span class="zh-only">仲有更多精彩內容，當日嚟現場發掘啦。</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY COME -->
+<section class="block">
+  <div class="why" style="padding:clamp(2rem,6vw,3rem) clamp(1.2rem,5vw,2.5rem)">
+    <div class="sec-head" style="margin-bottom:1.4rem">
+      <div class="kicker"><span class="en-only">Why come</span><span class="zh-only">點解要嚟</span></div>
+      <h2><span class="en-only">Made for the whole neighbourhood</span><span class="zh-only">啱晒一家大細同街坊</span></h2>
+    </div>
+    <div class="why-list">
+      <div class="why-item"><span class="ic">🎟️</span><div><b><span class="en-only">Free entry</span><span class="zh-only">免費入場</span></b><span><span class="en-only">No tickets, no booking — just turn up.</span><span class="zh-only">唔使買飛、唔使報名，直接嚟。</span></span></div></div>
+      <div class="why-item"><span class="ic">🚗</span><div><b><span class="en-only">Free parking</span><span class="zh-only">免費泊車</span></b><span><span class="en-only">On a first-come, first-served basis.</span><span class="zh-only">先到先得。</span></span></div></div>
+      <div class="why-item"><span class="ic">👨‍👩‍👧‍👦</span><div><b><span class="en-only">Family friendly</span><span class="zh-only">一家大細啱玩</span></b><span><span class="en-only">Something for every age to enjoy.</span><span class="zh-only">老中青幼都有得玩。</span></span></div></div>
+      <div class="why-item"><span class="ic">❤️</span><div><b><span class="en-only">For a good cause</span><span class="zh-only">為善最樂</span></b><span><span class="en-only">Supporting our church rebuilding project.</span><span class="zh-only">支持教會重建計劃。</span></span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION + MAP -->
+<section class="block" id="location">
+  <div class="sec-head">
+    <div class="kicker"><span class="en-only">Getting there</span><span class="zh-only">交通及地點</span></div>
+    <h2><span class="en-only">Where to find us</span><span class="zh-only">點樣去</span></h2>
+  </div>
+  <div class="loc-grid">
+    <div class="loc-card">
+      <h3>Finchley Catholic High School</h3>
+      <div class="addr">School Hall, Woodside Lane, London N12 8TA</div>
+      <ul>
+        <li><span>🚇</span><div><b><span class="en-only">By Tube</span><span class="zh-only">地鐵</span></b> <span class="en-only">Woodside Park (Northern line), approx. 10-min walk.</span><span class="zh-only">Woodside Park 站（Northern line），步行約 10 分鐘。</span></div></li>
+        <li><span>🚌</span><div><b><span class="en-only">By Bus</span><span class="zh-only">巴士</span></b> <span class="en-only">Routes serving Woodside Lane / North Finchley.</span><span class="zh-only">途經 Woodside Lane / North Finchley 一帶嘅路線。</span></div></li>
+        <li><span>🅿️</span><div><b><span class="en-only">Parking</span><span class="zh-only">泊車</span></b> <span class="en-only">Free on-site parking, first come first served.</span><span class="zh-only">場內免費泊車，先到先得。</span></div></li>
+      </ul>
+      <a class="btn btn-primary" style="margin-top:1.2rem" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/?api=1&destination=Finchley+Catholic+High+School+N12+8TA">
+        <span class="en-only">🧭 Open in Google Maps</span><span class="zh-only">🧭 用 Google 地圖導航</span>
+      </a>
+    </div>
+    <div class="map">
+      <iframe
+        title="Finchley Catholic High School map"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Finchley%20Catholic%20High%20School%20N12%208TA&output=embed">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- REDEVELOPMENT -->
+<section class="block" id="redevelopment">
+  <div class="redev">
+    <div class="kicker"><span class="en-only">Why reprovision</span><span class="zh-only">重建願景</span></div>
+    <h2><span class="en-only">Rooted in King's Cross: Rebuilding, Renewing, Transforming Our Church</span><span class="zh-only">扎根君王十字：重建、更新、轉化我們的教會</span></h2>
+    <p>
+      <span class="en-only">King's Cross Methodist Church has served the local Camden community since the early 19th century, and is thriving today — with growing congregations, a student residential community and space for local groups. The ageing building now needs significant modernisation. All proceeds from the Summer Fair support this rebuilding project.</span>
+      <span class="zh-only">君王十字堂自十九世紀初已服侍 Camden 社區，至今仍然蓬勃 — 會眾不斷增長，並設有學生宿舍及社區團體聚會空間。年事漸高的建築現需大幅更新。夏日嘉年華的所有收益，將支持這項重建計劃。</span>
+    </p>
+    <div class="rrt">
+      <span><b>重建</b><small>Rebuild</small></span>
+      <span><b>更新</b><small>Renew</small></span>
+      <span><b>轉化</b><small>Transform</small></span>
+    </div>
+    <div class="redev-cta">
+      <a class="btn btn-redev" target="_blank" rel="noopener" href="https://www.kxmc.org">
+        <span class="en-only">Our Plan</span><span class="zh-only">重建計劃</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="sec-head">
+    <div class="kicker">FAQ</div>
+    <h2><span class="en-only">Good to know</span><span class="zh-only">常見問題</span></h2>
+  </div>
+  <div class="faq">
+    <details open>
+      <summary><span class="en-only">Do I need to book or buy a ticket?</span><span class="zh-only">需要預先報名或者買飛嗎？</span></summary>
+      <div class="ans"><span class="en-only">No — entry is completely free and there's no need to register. Just come along on the day.</span><span class="zh-only">唔使。免費入場，亦唔需要預先報名，當日直接嚟就得。</span></div>
+    </details>
+    <details>
+      <summary><span class="en-only">Is it suitable for children?</span><span class="zh-only">適合小朋友嗎？</span></summary>
+      <div class="ans"><span class="en-only">Absolutely — it's a family event with games and activities for all ages. Bring the whole family.</span><span class="zh-only">非常適合 — 呢個係一家大細嘅活動，有適合各年齡嘅遊戲同攤檔，歡迎帶埋全家人。</span></div>
+    </details>
+    <details>
+      <summary><span class="en-only">Is there parking?</span><span class="zh-only">有泊車位嗎？</span></summary>
+      <div class="ans"><span class="en-only">Yes — free on-site parking is available on a first-come, first-served basis.</span><span class="zh-only">有 — 場內提供免費泊車，先到先得。</span></div>
+    </details>
+    <details>
+      <summary><span class="en-only">Can I pay by card at the stalls?</span><span class="zh-only">攤檔可以用信用卡付款嗎？</span></summary>
+      <div class="ans"><span class="en-only">Stalls are run on the day — we'd suggest bringing some cash to be safe. Card may be available at some stalls.</span><span class="zh-only">攤檔當日現場運作，建議帶少少現金較穩陣，部分攤檔或會接受拍卡。</span></div>
+    </details>
+  </div>
+</section>
+
+<!-- FOOTER + SHARE -->
+<footer id="share">
+  <img src="/summer-fair-logo.png" alt="KXMC Summer Fair logo" style="width:min(220px,55vw);height:auto;margin:0 auto 1.1rem;display:block">
+  <div class="fbrand">King's Cross Methodist Church</div>
+  <div class="fnote">
+    <span class="en-only">Summer Fair · Saturday 18 July 2026 · 12pm–4pm · Finchley Catholic High School, N12 8TA</span>
+    <span class="zh-only">夏日嘉年華 · 2026年7月18日（六）· 12pm–4pm · Finchley Catholic High School, N12 8TA</span>
+  </div>
+
+  <div class="share">
+    <a class="btn btn-sky" id="shareWa" target="_blank" rel="noopener" href="#">
+      <span class="en-only">Share on WhatsApp</span><span class="zh-only">分享到 WhatsApp</span>
+    </a>
+    <a class="btn btn-primary" id="shareFb" target="_blank" rel="noopener" href="#">
+      <span class="en-only">Share on Facebook</span><span class="zh-only">分享到 Facebook</span>
+    </a>
+    <button class="btn btn-ghost" id="shareNative">
+      <span class="en-only">More / Copy link</span><span class="zh-only">更多 / 複製連結</span>
+    </button>
+  </div>
+
+  <div class="socials">
+    <a href="https://www.facebook.com/KingsCrossMethodistChurch" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+    <a href="https://www.instagram.com/kxmc_church/" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+    <a href="https://www.kxmc.org.uk" target="_blank" rel="noopener" aria-label="Website">⊕</a>
+  </div>
+  <div class="fnote">© 2026 King's Cross Methodist Church · kxmc.org.uk</div>
+</footer>
+
+<script>
+  /* ---- FREE ENTRY bouncing ball: autonomous bounce + grab & throw ---- */
+  (function(){
+    var ball = document.getElementById('freeBall');
+    if(!ball) return;
+    var hero = ball.closest('.hero');
+    if(!hero) return;
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var x, y, vx, vy, size;
+    var dragging=false, pointerId=null;
+    var lastX=0, lastY=0, lastT=0, grabDX=0, grabDY=0;
+    var thrown=false; // becomes true after first interaction
+    var hint = ball.querySelector('.hint');
+
+    function bounds(){
+      return { w: hero.clientWidth, h: hero.clientHeight };
+    }
+    function place(){
+      size = ball.offsetWidth;
+      var b = bounds();
+      // start near where it used to sit: horizontally centered, a bit above buttons
+      x = b.w/2 - size/2;
+      y = b.h*0.46;
+      vx = reduce ? 0 : CRUISE;
+      vy = reduce ? 0 : CRUISE*0.7;
+      draw();
+    }
+    function draw(){
+      ball.style.transform = 'translate('+x+'px,'+y+'px)';
+    }
+
+    var CRUISE = 0.72; // constant self-moving speed (0.3x of previous 2.4)
+
+    function normalize(){
+      // force velocity vector back to constant cruising speed, preserving direction
+      var sp = Math.hypot(vx,vy);
+      if(sp === 0){ vx = CRUISE; vy = CRUISE*0.7; return; }
+      vx = vx/sp * CRUISE;
+      vy = vy/sp * CRUISE;
+    }
+
+    function step(){
+      var b = bounds();
+      if(!dragging){
+        x += vx; y += vy;
+        // wall collisions — reflect, keep current speed (energy preserved on bounce)
+        if(x <= 0){ x=0; vx = Math.abs(vx); }
+        else if(x + size >= b.w){ x = b.w - size; vx = -Math.abs(vx); }
+        if(y <= 0){ y=0; vy = Math.abs(vy); }
+        else if(y + size >= b.h){ y = b.h - size; vy = -Math.abs(vy); }
+        // after a throw, ease speed back down toward CRUISE (never below it, never stops)
+        var sp = Math.hypot(vx,vy);
+        if(sp > CRUISE + 0.02){
+          var target = CRUISE + (sp - CRUISE) * 0.97; // decay extra speed by 3% per frame
+          vx = vx/sp * target;
+          vy = vy/sp * target;
+        }
+        draw();
+      }
+      requestAnimationFrame(step);
+    }
+
+    // ---- pointer grab / throw ----
+    ball.addEventListener('pointerdown', function(e){
+      dragging=true; thrown=true; pointerId=e.pointerId;
+      ball.classList.add('grabbing');
+      ball.setPointerCapture(pointerId);
+      var r = hero.getBoundingClientRect();
+      grabDX = (e.clientX - r.left) - x;
+      grabDY = (e.clientY - r.top) - y;
+      lastX = e.clientX; lastY = e.clientY; lastT = performance.now();
+      vx=0; vy=0;
+      if(hint) hint.style.opacity='0';
+      e.preventDefault();
+    });
+    window.addEventListener('pointermove', function(e){
+      if(!dragging || e.pointerId!==pointerId) return;
+      var r = hero.getBoundingClientRect();
+      var nx = (e.clientX - r.left) - grabDX;
+      var ny = (e.clientY - r.top) - grabDY;
+      var b = bounds();
+      // clamp inside hero
+      x = Math.max(0, Math.min(b.w - size, nx));
+      y = Math.max(0, Math.min(b.h - size, ny));
+      // track velocity for throw
+      var now = performance.now();
+      var dt = Math.max(1, now - lastT);
+      vx = (e.clientX - lastX) / dt * 16;
+      vy = (e.clientY - lastY) / dt * 16;
+      lastX = e.clientX; lastY = e.clientY; lastT = now;
+      draw();
+    });
+    function release(e){
+      if(!dragging) return;
+      dragging=false;
+      ball.classList.remove('grabbing');
+      try{ ball.releasePointerCapture(pointerId); }catch(_){}
+      if(reduce){ vx=0; vy=0; return; }
+      var sp = Math.hypot(vx,vy);
+      if(sp < 0.01){ // released without moving -> nudge it off at cruise speed
+        vx = (Math.random()<.5?-1:1)*CRUISE;
+        vy = (Math.random()<.5?-1:1)*CRUISE*0.7;
+        return;
+      }
+      // cap the initial throw so it's lively but not uncontrollable; step() eases it back to CRUISE
+      var max = 26;
+      if(sp > max){ vx = vx/sp*max; vy = vy/sp*max; }
+    }
+    window.addEventListener('pointerup', release);
+    window.addEventListener('pointercancel', release);
+
+    // recompute on resize / orientation change
+    window.addEventListener('resize', function(){
+      var b = bounds();
+      x = Math.max(0, Math.min(b.w - size, x));
+      y = Math.max(0, Math.min(b.h - size, y));
+      draw();
+    });
+
+    // init after layout settles (fonts/images can shift hero height)
+    window.addEventListener('load', function(){ place(); if(!reduce) requestAnimationFrame(step); else draw(); });
+    setTimeout(function(){ place(); if(!reduce) requestAnimationFrame(step); else draw(); }, 300);
+  })();
+
+  function toggleFood(card){
+    var gal = document.getElementById('foodgal');
+    var open = gal.classList.toggle('open');
+    card.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function setLang(l){
+    document.documentElement.lang = l;
+    document.getElementById('btn-en').classList.toggle('active', l==='en');
+    document.getElementById('btn-zh').classList.toggle('active', l==='zh');
+    try{ localStorage.setItem('kxmc-lang', l); }catch(e){}
+  }
+  // restore saved language (graceful if storage unavailable)
+  try{
+    var saved = localStorage.getItem('kxmc-lang');
+    if(saved){ setLang(saved); }
+    else if((navigator.language||'').toLowerCase().indexOf('zh')===0){ setLang('zh'); }
+  }catch(e){}
+
+  // share links
+  var shareUrl = window.location.href;
+  var shareText = "KXMC Summer Fair — Sat 18 July 2026, 12–4pm, Finchley Catholic High School. Free entry! 夏日嘉年華，免費入場，歡迎帶屋企人朋友一齊嚟！";
+  document.getElementById('shareWa').href = "https://wa.me/?text=" + encodeURIComponent(shareText + " " + shareUrl);
+  document.getElementById('shareFb').href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl);
+
+  // Facebook button: on mobile, sharer.php dead-ends inside the FB app, so use the native
+  // share sheet there instead (desktop keeps the normal Facebook web sharer above).
+  var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  if(isMobile && navigator.share){
+    document.getElementById('shareFb').addEventListener('click', function(e){
+      e.preventDefault();
+      navigator.share({title:"KXMC Summer Fair", text:shareText, url:shareUrl}).catch(function(){});
+    });
+  }
+
+  document.getElementById('shareNative').addEventListener('click', async function(){
+    if(navigator.share){
+      try{ await navigator.share({title:"KXMC Summer Fair", text:shareText, url:shareUrl}); }catch(e){}
+    } else {
+      try{ await navigator.clipboard.writeText(shareUrl); this.textContent = (document.documentElement.lang==='zh'?'已複製連結 ✓':'Link copied ✓'); }catch(e){}
+    }
+  });
+
+  // add-to-calendar (.ics generated client-side)
+  var ics = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//KXMC//Summer Fair//EN",
+    "BEGIN:VEVENT",
+    "UID:summerfair-2026@kxmc.org",
+    "DTSTAMP:20260101T000000Z",
+    "DTSTART:20260718T120000",
+    "DTEND:20260718T160000",
+    "SUMMARY:KXMC Summer Fair 夏日嘉年華",
+    "DESCRIPTION:Free entry summer fair in aid of King's Cross Methodist Church rebuilding project. 免費入場，為君王十字堂重建計劃籌款。",
+    "LOCATION:Finchley Catholic High School, School Hall, London N12 8TA",
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+  var blob = new Blob([ics], {type:"text/calendar"});
+  document.getElementById('calBtn').href = URL.createObjectURL(blob);
+</script>
+</body>
+</html>
