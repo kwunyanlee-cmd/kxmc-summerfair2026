@@ -762,11 +762,24 @@
     document.getElementById('btn-zh').classList.toggle('active', l==='zh');
     try{ localStorage.setItem('kxmc-lang', l); }catch(e){}
   }
-  // restore saved language (graceful if storage unavailable)
+  // Default language is English. Auto-switch to Chinese ONLY if the device language
+  // is Traditional Chinese (zh-TW / zh-HK / zh-MO / zh-Hant). A previously saved manual
+  // choice always wins.
   try{
     var saved = localStorage.getItem('kxmc-lang');
-    if(saved){ setLang(saved); }
-    else if((navigator.language||'').toLowerCase().indexOf('zh')===0){ setLang('zh'); }
+    if(saved){
+      setLang(saved);
+    } else {
+      var langs = (navigator.languages && navigator.languages.length)
+        ? navigator.languages : [navigator.language || ''];
+      var wantsTradChinese = langs.some(function(l){
+        l = (l || '').toLowerCase();
+        return l.indexOf('zh-hant') === 0 || l === 'zh-tw' || l === 'zh-hk' || l === 'zh-mo'
+            || l.indexOf('zh-hant-') === 0;
+      });
+      if(wantsTradChinese){ setLang('zh'); }
+      // otherwise stay on the English default
+    }
   }catch(e){}
 
   // share links
