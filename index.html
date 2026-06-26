@@ -148,6 +148,27 @@
   .free .big{font-size:1.1rem}
   .free .sm{font-size:.7rem;font-weight:600;letter-spacing:.04em}
   .free-spacer{height:36px;width:100%}
+
+  /* add-to-calendar picker */
+  .cal-pop-backdrop{
+    position:fixed;inset:0;z-index:90;background:rgba(33,74,99,.45);
+    display:none;align-items:center;justify-content:center;padding:1.2rem;backdrop-filter:blur(2px)
+  }
+  .cal-pop-backdrop.open{display:flex}
+  .cal-pop{
+    background:#fff;border-radius:22px;box-shadow:var(--shadow-lg);
+    width:100%;max-width:340px;padding:1.5rem 1.4rem;text-align:center
+  }
+  .cal-pop h4{font-family:var(--display);font-weight:800;color:var(--ink);font-size:1.2rem;margin-bottom:.3rem}
+  .cal-pop p{color:var(--ink-soft);font-size:.9rem;margin-bottom:1.1rem}
+  .cal-pop .cal-opt{
+    display:flex;align-items:center;justify-content:center;gap:.5rem;
+    width:100%;padding:.85rem 1rem;margin-bottom:.6rem;border-radius:999px;
+    font-family:var(--display);font-weight:700;font-size:.98rem;text-decoration:none;cursor:pointer;border:0
+  }
+  .cal-opt.apple{background:var(--ink);color:#fff}
+  .cal-opt.google{background:var(--coral);color:#fff}
+  .cal-pop .cal-close{background:transparent;border:0;color:var(--ink-soft);font-family:var(--body);font-weight:700;font-size:.9rem;cursor:pointer;margin-top:.3rem}
   .free .hint{
     position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
     font-family:var(--body);font-weight:700;font-size:.6rem;color:var(--ink-soft);
@@ -206,6 +227,11 @@
 
   /* food gallery (expandable) */
   .stall-food{cursor:pointer}
+  .stall-food .more-soon{
+    display:inline-block;margin-top:.6rem;
+    font-family:var(--body);font-weight:700;font-size:.78rem;color:var(--leaf);
+    background:rgba(92,184,92,.12);padding:.25rem .6rem;border-radius:999px
+  }
   .stall-food .learn{
     display:inline-flex;align-items:center;gap:.4rem;margin-top:.9rem;
     font-family:var(--display);font-weight:800;font-size:1rem;color:#fff;
@@ -238,11 +264,17 @@
   .food-item:hover{transform:translateY(-4px)}
   .food-item img{width:100%;height:auto;display:block}
   .food-item .ph{
-    aspect-ratio:3/4;display:grid;place-items:center;gap:.3rem;text-align:center;padding:1rem;
-    background:linear-gradient(135deg,#fff,var(--cream));color:var(--ink-soft)
+    aspect-ratio:3/4;display:grid;place-items:center;gap:.4rem;text-align:center;padding:1rem;
+    background:repeating-linear-gradient(135deg,#fff,#fff 12px,var(--cream) 12px,var(--cream) 24px);
+    color:var(--ink-soft);border:2px dashed rgba(33,74,99,.18);border-radius:14px
   }
-  .food-item .ph .pe{font-size:2.2rem}
-  .food-item .ph small{font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.05em}
+  .food-item .ph .pe{font-size:2rem;opacity:.55}
+  .food-item .ph small{font-family:var(--display);font-weight:700;font-size:.85rem;letter-spacing:.03em;color:var(--ink-soft)}
+  .gal-more{
+    margin-top:1.1rem;text-align:center;font-family:var(--display);font-weight:700;
+    color:var(--leaf);font-size:.95rem;background:rgba(92,184,92,.1);
+    padding:.6rem 1rem;border-radius:14px
+  }
 
   /* highlights */
   .why{background:linear-gradient(180deg,#eaf6fb,var(--cream));border-radius:28px}
@@ -406,9 +438,9 @@
     <a class="btn btn-primary" href="#location">
       <span class="en-only">📍 Get directions</span><span class="zh-only">📍 交通路線</span>
     </a>
-    <a class="btn btn-sun" id="calBtn" href="#" download="KXMC-Summer-Fair-2026.ics">
+    <button class="btn btn-sun" id="calBtn" type="button" onclick="openCalPop()">
       <span class="en-only">📅 Add to calendar</span><span class="zh-only">📅 加入行事曆</span>
-    </a>
+    </button>
     <a class="btn btn-sky" href="#share">
       <span class="en-only">💬 Invite friends</span><span class="zh-only">💬 邀請親友</span>
     </a>
@@ -458,6 +490,7 @@
       <div class="emoji">🍢</div>
       <h3><span class="en-only">Food Stalls</span><span class="zh-only">美食攤位</span></h3>
       <p><span class="en-only">Homemade bites, sweet treats and drinks to enjoy on the day.</span><span class="zh-only">即場製作嘅美食、甜品同飲品，邊行邊食。</span></p>
+      <span class="more-soon"><span class="en-only">✨ More stalls coming soon</span><span class="zh-only">✨ 更多攤檔陸續加入</span></span>
       <span class="learn">
         <span class="en-only">See more!</span><span class="zh-only">睇更多！</span>
         <span class="chev">›</span>
@@ -478,9 +511,11 @@
           <div class="food-item"><img src="/stall-4.jpg" alt="Food stall 4" loading="lazy"></div>
           <div class="food-item"><img src="/stall-5.jpg" alt="Food stall 5" loading="lazy"></div>
           <div class="food-item"><img src="/stall-6.jpg" alt="Food stall 6" loading="lazy"></div>
-          <div class="food-item"><div class="ph"><span class="pe">🧋</span><small><span class="en-only">Stall 7</span><span class="zh-only">攤位七</span></small></div></div>
-          <div class="food-item"><div class="ph"><span class="pe">🍢</span><small><span class="en-only">Stall 8</span><span class="zh-only">攤位八</span></small></div></div>
+          <div class="food-item"><div class="ph"><span class="pe">🍽️</span><small><span class="en-only">Coming soon…</span><span class="zh-only">敬請期待…</span></small></div></div>
+          <div class="food-item"><div class="ph"><span class="pe">🍽️</span><small><span class="en-only">Coming soon…</span><span class="zh-only">敬請期待…</span></small></div></div>
+          <div class="food-item"><div class="ph"><span class="pe">🍽️</span><small><span class="en-only">Coming soon…</span><span class="zh-only">敬請期待…</span></small></div></div>
         </div>
+        <p class="gal-more"><span class="en-only">✨ More stalls coming soon — check back for updates!</span><span class="zh-only">✨ 更多攤檔陸續加入 — 記得返嚟睇睇！</span></p>
       </div>
     </div>
     <div class="stall">
@@ -624,6 +659,21 @@
   </div>
   <div class="fnote">© 2026 King's Cross Methodist Church · kxmc.org.uk</div>
 </footer>
+
+<!-- Add-to-calendar picker -->
+<div class="cal-pop-backdrop" id="calPop" onclick="if(event.target===this)closeCalPop()">
+  <div class="cal-pop" role="dialog" aria-modal="true" aria-label="Add to calendar">
+    <h4><span class="en-only">Add to calendar</span><span class="zh-only">加入行事曆</span></h4>
+    <p><span class="en-only">Choose your calendar:</span><span class="zh-only">請選擇你的行事曆：</span></p>
+    <a class="cal-opt apple" id="calApple" href="#" download="KXMC-Summer-Fair-2026.ics" onclick="setTimeout(closeCalPop,400)">
+       Apple / Outlook
+    </a>
+    <a class="cal-opt google" id="calGoogle" href="#" target="_blank" rel="noopener" onclick="setTimeout(closeCalPop,400)">
+      Google Calendar
+    </a>
+    <button class="cal-close" type="button" onclick="closeCalPop()"><span class="en-only">Cancel</span><span class="zh-only">取消</span></button>
+  </div>
+</div>
 
 <script>
   /* ---- FREE ENTRY bouncing ball: autonomous bounce + grab & throw ---- */
@@ -806,7 +856,7 @@
     }
   });
 
-  // add-to-calendar (.ics generated client-side)
+  // add-to-calendar — offer Apple/Outlook (.ics) and Google Calendar
   var ics = [
     "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//KXMC//Summer Fair//EN",
     "BEGIN:VEVENT",
@@ -820,7 +870,19 @@
     "END:VEVENT","END:VCALENDAR"
   ].join("\r\n");
   var blob = new Blob([ics], {type:"text/calendar"});
-  document.getElementById('calBtn').href = URL.createObjectURL(blob);
+  document.getElementById('calApple').href = URL.createObjectURL(blob);
+
+  // Google Calendar pre-filled link
+  var gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent("KXMC Summer Fair 夏日嘉年華")
+    + "&dates=20260718T120000/20260718T160000"
+    + "&details=" + encodeURIComponent("Free entry summer fair in aid of King's Cross Methodist Church rebuilding project. 免費入場，為君王十字堂重建計劃籌款。 https://summerfair2026.kxmc.org.uk")
+    + "&location=" + encodeURIComponent("Finchley Catholic High School, School Hall, London N12 8TA");
+  document.getElementById('calGoogle').href = gcal;
+
+  function openCalPop(){ document.getElementById('calPop').classList.add('open'); }
+  function closeCalPop(){ document.getElementById('calPop').classList.remove('open'); }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCalPop(); });
 </script>
 </body>
 </html>
