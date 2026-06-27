@@ -103,8 +103,12 @@
   .hero{
     position:relative;text-align:center;
     padding:clamp(2.5rem,7vw,5rem) 1.25rem clamp(3rem,8vw,5.5rem);
-    background:
-      radial-gradient(120% 90% at 50% -10%, #eaf6fb 0%, var(--cream) 60%);
+    background-image:
+      linear-gradient(180deg, rgba(255,250,240,.82) 0%, rgba(255,250,240,.62) 38%, rgba(255,250,240,.80) 100%),
+      url("/hero-bg.jpg");
+    background-size:cover;
+    background-position:center 32%;
+    background-repeat:no-repeat;
     overflow:hidden;
   }
   .bunting{position:absolute;top:0;left:-2%;width:104%;height:42px;display:flex;justify-content:space-around;align-items:flex-start;pointer-events:none}
@@ -183,7 +187,8 @@
   }
   .fact{padding:1.3rem 1rem;text-align:center;border-right:2px dashed rgba(33,74,99,.12)}
   .fact:last-child{border-right:0}
-  .fact .ic{font-size:1.5rem}
+  .fact .ic{font-size:1.5rem;color:var(--coral)}
+  .fact .ic svg{width:26px;height:26px;display:block;margin:0 auto}
   .fact .lab{font-family:var(--display);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);margin-top:.3rem}
   .fact .val{font-family:var(--display);font-weight:700;font-size:1.02rem;color:var(--ink);margin-top:.15rem}
   .fact .val small{display:block;font-size:.8rem;font-weight:600;color:var(--ink-soft)}
@@ -196,6 +201,7 @@
     display:inline-flex;align-items:center;gap:.5rem;transition:transform .15s,box-shadow .15s;box-shadow:var(--shadow)
   }
   .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .bic{width:18px;height:18px;flex:0 0 auto}
   .btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
   .btn-primary{background:var(--coral);color:#fff}
   .btn-sun{background:var(--sunshine);color:var(--ink)}
@@ -220,7 +226,14 @@
   .stall:nth-child(2){border-color:var(--leaf)}
   .stall:nth-child(3){border-color:var(--sunshine)}
   .stall:nth-child(4){border-color:var(--sky)}
-  .stall .emoji{font-size:2.1rem}
+  .stall .emoji{font-size:2.1rem;color:var(--coral)}
+  .stall .emoji svg{width:38px;height:38px;display:block}
+  .stall:nth-child(1) .emoji{color:var(--coral)}
+  .stall:nth-child(3) .emoji{color:var(--leaf)}
+  .stall:nth-child(5) .emoji{color:var(--sunshine)}
+  .stall:nth-child(6) .emoji{color:var(--sky)}
+  .spark{width:16px;height:16px;vertical-align:-2px;margin-right:.35rem;color:var(--sunshine)}
+  .gal-more .spark{color:var(--leaf)}
   .stall h3{font-family:var(--display);font-weight:700;font-size:1.25rem;margin:.5rem 0 .3rem;color:var(--ink)}
   .stall p{color:var(--ink-soft);font-size:.96rem}
 
@@ -261,13 +274,34 @@
   }
   .food-item{border-radius:14px;overflow:hidden;background:var(--cream);box-shadow:var(--shadow);transition:transform .15s}
   .food-item:hover{transform:translateY(-4px)}
-  .food-item img{width:100%;height:auto;display:block}
+  .food-item img{width:100%;height:auto;display:block;cursor:zoom-in}
+  /* language-swap images inside stalls: respect en-only/zh-only over the block rule */
+  .food-item img.zh-only{display:none}
+  html[lang="zh"] .food-item img.zh-only{display:block}
+  html[lang="zh"] .food-item img.en-only{display:none}
+
+  /* lightbox for enlarged stall posters */
+  .lightbox{
+    position:fixed;inset:0;z-index:100;background:rgba(20,40,52,.88);
+    display:none;align-items:center;justify-content:center;padding:1.2rem;cursor:zoom-out
+  }
+  .lightbox.open{display:flex}
+  .lightbox img{
+    max-width:96vw;max-height:92vh;width:auto;height:auto;
+    border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);cursor:default
+  }
+  .lightbox .lb-close{
+    position:absolute;top:14px;right:18px;width:44px;height:44px;border-radius:50%;
+    background:rgba(255,255,255,.92);border:0;color:var(--ink);font-size:1.5rem;font-weight:800;
+    cursor:pointer;line-height:1;display:grid;place-items:center;box-shadow:var(--shadow)
+  }
   .food-item .ph{
     aspect-ratio:3/4;display:grid;place-items:center;gap:.4rem;text-align:center;padding:1rem;
     background:repeating-linear-gradient(135deg,#fff,#fff 12px,var(--cream) 12px,var(--cream) 24px);
     color:var(--ink-soft);border:2px dashed rgba(33,74,99,.18);border-radius:14px
   }
   .food-item .ph .pe{font-size:2rem;opacity:.55}
+  .food-item .ph .pe svg{width:34px;height:34px;display:block;margin:0 auto}
   .food-item .ph small{font-family:var(--display);font-weight:700;font-size:.85rem;letter-spacing:.03em;color:var(--ink-soft)}
   .gal-more{
     margin-top:1.1rem;text-align:center;font-family:var(--display);font-weight:700;
@@ -279,7 +313,9 @@
   .why{background:linear-gradient(180deg,#eaf6fb,var(--cream));border-radius:28px}
   .why-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:.5rem}
   .why-item{display:flex;gap:.8rem;align-items:flex-start;background:#fff;padding:1.1rem 1.2rem;border-radius:18px;box-shadow:var(--shadow)}
-  .why-item .ic{font-size:1.5rem;line-height:1}
+  .why-item .ic{font-size:1.5rem;line-height:1;color:var(--coral)}
+  .why-item .ic svg{width:26px;height:26px;display:block;flex:0 0 auto}
+  .why-item>.ic{flex:0 0 auto}
   .why-item b{font-family:var(--display);display:block;color:var(--ink)}
   .why-item span{color:var(--ink-soft);font-size:.93rem}
 
@@ -290,6 +326,8 @@
   .loc-card .addr{color:var(--ink-soft);font-size:1.02rem;margin-bottom:1rem}
   .loc-card ul{list-style:none;display:grid;gap:.6rem}
   .loc-card li{display:flex;gap:.6rem;align-items:flex-start;color:var(--ink-soft);font-size:.96rem}
+  .loc-card li>span{flex:0 0 auto;color:var(--coral)}
+  .loc-card li>span svg{width:24px;height:24px;display:block}
   .loc-card li b{color:var(--ink);font-family:var(--display)}
   .map{border-radius:var(--rad);overflow:hidden;box-shadow:var(--shadow);min-height:300px}
   .map iframe{width:100%;height:100%;min-height:300px;border:0;display:block}
@@ -435,13 +473,16 @@
 
   <div class="cta-row">
     <a class="btn btn-primary" href="#location">
-      <span class="en-only">📍 Get directions</span><span class="zh-only">📍 交通路線</span>
+      <svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span class="en-only">Get directions</span><span class="zh-only">交通路線</span>
     </a>
     <button class="btn btn-sun" id="calBtn" type="button" onclick="openCalPop()">
-      <span class="en-only">📅 Add to calendar</span><span class="zh-only">📅 加入行事曆</span>
+      <svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <span class="en-only">Add to calendar</span><span class="zh-only">加入行事曆</span>
     </button>
     <a class="btn btn-sky" href="#share">
-      <span class="en-only">💬 Invite friends</span><span class="zh-only">💬 邀請親友</span>
+      <svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+      <span class="en-only">Invite friends</span><span class="zh-only">邀請親友</span>
     </a>
   </div>
 </header>
@@ -449,17 +490,17 @@
 <!-- QUICK FACTS -->
 <div class="facts">
   <div class="fact">
-    <div class="ic">📅</div>
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
     <div class="lab"><span class="en-only">Date</span><span class="zh-only">日期</span></div>
     <div class="val">Sat 18 July 2026<small><span class="en-only">Saturday</span><span class="zh-only">星期六</span></small></div>
   </div>
   <div class="fact">
-    <div class="ic">🕛</div>
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
     <div class="lab"><span class="en-only">Time</span><span class="zh-only">時間</span></div>
     <div class="val">12pm – 4pm</div>
   </div>
   <div class="fact">
-    <div class="ic">📍</div>
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
     <div class="lab"><span class="en-only">Venue</span><span class="zh-only">地點</span></div>
     <div class="val">Finchley Catholic High School<small>School Hall · N12 8TA</small></div>
   </div>
@@ -486,10 +527,10 @@
   <div class="stalls">
     <div class="stall stall-food" role="button" tabindex="0" aria-expanded="false" aria-controls="foodgal"
          onclick="toggleFood(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFood(this);}">
-      <div class="emoji">🍢</div>
+      <div class="emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V2"/><path d="M8 2v20M18 2c-1.7 0-3 1.8-3 4.5S16 11 18 11v11"/></svg></div>
       <h3><span class="en-only">Food Stalls</span><span class="zh-only">美食攤位</span></h3>
       <p><span class="en-only">Homemade bites, sweet treats and drinks to enjoy on the day.</span><span class="zh-only">即場製作的美食、甜品與飲品，邊逛邊嚐。</span></p>
-      <span class="more-soon"><span class="en-only">✨ More stalls coming soon</span><span class="zh-only">✨ 更多攤檔陸續加入</span></span>
+      <span class="more-soon"><svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6Z"/></svg><span class="en-only">More stalls coming soon</span><span class="zh-only">更多攤檔陸續加入</span></span>
       <span class="learn">
         <span class="en-only">See more!</span><span class="zh-only">查看更多！</span>
         <span class="chev">›</span>
@@ -504,31 +545,49 @@
           <span class="zh-only">來發掘一系列美食攤位，提供平日街上難以買到的住家風味亞洲小食、甜品與飲品。新鮮製作、滋味十足，最適合一起分享。帶同家人與朋友一起來品嚐吧！</span>
         </p>
         <div class="food-grid">
-          <div class="food-item"><img src="/stall-1.jpg" alt="Food stall 1" loading="lazy"></div>
-          <div class="food-item"><img src="/stall-2.jpg" alt="Food stall 2" loading="lazy"></div>
-          <div class="food-item"><img src="/stall-3.jpg" alt="Food stall 3" loading="lazy"></div>
-          <div class="food-item"><img src="/stall-4.jpg" alt="Food stall 4" loading="lazy"></div>
-          <div class="food-item"><img src="/stall-5.jpg" alt="Food stall 5" loading="lazy"></div>
-          <div class="food-item"><img src="/stall-6.jpg" alt="Food stall 6" loading="lazy"></div>
-          <div class="food-item"><div class="ph"><span class="pe">🍽️</span><small><span class="en-only">Coming soon…</span><span class="zh-only">敬請期待…</span></small></div></div>
-          <div class="food-item"><div class="ph"><span class="pe">🍽️</span><small><span class="en-only">Coming soon…</span><span class="zh-only">敬請期待…</span></small></div></div>
-          <div class="food-item"><div class="ph"><span class="pe">🍽️</span><small><span class="en-only">Coming soon…</span><span class="zh-only">敬請期待…</span></small></div></div>
+          <div class="food-item"><img src="/stall-1.jpg" alt="Food stall 1" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <div class="food-item">
+            <img class="en-only" src="/stall-2-en.jpg" alt="Food stall 2" loading="lazy" onclick="openLightbox(this.src)">
+            <img class="zh-only" src="/stall-2-zh.jpg" alt="美食攤位 2" loading="lazy" onclick="openLightbox(this.src)">
+          </div>
+          <div class="food-item">
+            <img class="en-only" src="/stall-3-en.jpg" alt="Food stall 3" loading="lazy" onclick="openLightbox(this.src)">
+            <img class="zh-only" src="/stall-3-zh.jpg" alt="美食攤位 3" loading="lazy" onclick="openLightbox(this.src)">
+          </div>
+          <div class="food-item">
+            <img class="en-only" src="/stall-4-en.jpg" alt="Food stall 4" loading="lazy" onclick="openLightbox(this.src)">
+            <img class="zh-only" src="/stall-4-zh.jpg" alt="美食攤位 4" loading="lazy" onclick="openLightbox(this.src)">
+          </div>
+          <div class="food-item">
+            <img class="en-only" src="/stall-5-en.jpg" alt="Food stall 5" loading="lazy" onclick="openLightbox(this.src)">
+            <img class="zh-only" src="/stall-5-zh.jpg" alt="美食攤位 5" loading="lazy" onclick="openLightbox(this.src)">
+          </div>
+          <div class="food-item">
+            <img class="en-only" src="/stall-6-en.jpg" alt="Food stall 6" loading="lazy" onclick="openLightbox(this.src)">
+            <img class="zh-only" src="/stall-6-zh.jpg" alt="美食攤位 6" loading="lazy" onclick="openLightbox(this.src)">
+          </div>
+          <div class="food-item">
+            <img class="en-only" src="/stall-7-en.jpg" alt="Food stall 7" loading="lazy" onclick="openLightbox(this.src)">
+            <img class="zh-only" src="/stall-7-zh.jpg" alt="美食攤位 7" loading="lazy" onclick="openLightbox(this.src)">
+          </div>
+          <div class="food-item"><img src="/stall-8-zh.jpg" alt="Food stall 8 美食攤位 8" loading="lazy" onclick="openLightbox(this.src)"></div>
+          <div class="food-item"><div class="ph"><span class="pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg></span><small><span class="en-only">Coming soon…</span><span class="zh-only">敬請期待…</span></small></div></div>
         </div>
-        <p class="gal-more"><span class="en-only">✨ More stalls coming soon — check back for updates!</span><span class="zh-only">✨ 更多攤檔陸續加入 — 記得再回來看看！</span></p>
+        <p class="gal-more"><svg class="spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6Z"/></svg><span class="en-only">More stalls coming soon — check back for updates!</span><span class="zh-only">更多攤檔陸續加入 — 記得再回來看看！</span></p>
       </div>
     </div>
     <div class="stall">
-      <div class="emoji">🧸</div>
+      <div class="emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg></div>
       <h3><span class="en-only">Handmade Crafts</span><span class="zh-only">手工藝品</span></h3>
       <p><span class="en-only">Lovingly made gifts and crafts — perfect to take home or give.</span><span class="zh-only">用心製作的精品與手作，自用或送禮皆宜。</span></p>
     </div>
     <div class="stall">
-      <div class="emoji">🎯</div>
+      <div class="emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
       <h3><span class="en-only">Games</span><span class="zh-only">遊戲攤位</span></h3>
       <p><span class="en-only">Spin, aim and play — fun games for kids and grown-ups alike.</span><span class="zh-only">大轉盤、投擲遊戲等等，大人小孩都能盡興。</span></p>
     </div>
     <div class="stall">
-      <div class="emoji">🎁</div>
+      <div class="emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v9h14v-9"/><path d="M12 8C12 8 11 3 8.5 3 7 3 6.5 4.5 7 5.5 7.6 6.8 9 7.5 12 8ZM12 8c0 0 1-5 3.5-5C17 3 17.5 4.5 17 5.5 16.4 6.8 15 7.5 12 8Z"/></svg></div>
       <h3><span class="en-only">And more!</span><span class="zh-only">還有更多！</span></h3>
       <p><span class="en-only">Plenty of surprises on the day — come and discover them.</span><span class="zh-only">還有更多精彩內容，當日親臨現場發掘。</span></p>
     </div>
@@ -543,10 +602,10 @@
       <h2><span class="en-only">Made for the whole neighbourhood</span><span class="zh-only">適合一家大小與街坊</span></h2>
     </div>
     <div class="why-list">
-      <div class="why-item"><span class="ic">🎟️</span><div><b><span class="en-only">Free entry</span><span class="zh-only">免費入場</span></b><span><span class="en-only">No tickets, no booking — just turn up.</span><span class="zh-only">無需購票、無需報名，直接前來。</span></span></div></div>
-      <div class="why-item"><span class="ic">🚗</span><div><b><span class="en-only">Free parking</span><span class="zh-only">免費泊車</span></b><span><span class="en-only">On a first-come, first-served basis.</span><span class="zh-only">先到先得。</span></span></div></div>
-      <div class="why-item"><span class="ic">👨‍👩‍👧‍👦</span><div><b><span class="en-only">Family friendly</span><span class="zh-only">適合一家大小</span></b><span><span class="en-only">Something for every age to enjoy.</span><span class="zh-only">老中青幼皆宜。</span></span></div></div>
-      <div class="why-item"><span class="ic">❤️</span><div><b><span class="en-only">For a good cause</span><span class="zh-only">為善最樂</span></b><span><span class="en-only">Supporting our church rebuilding project.</span><span class="zh-only">支持教會重建計劃。</span></span></div></div>
+      <div class="why-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4Z"/><path d="M13 7v2M13 15v2M13 11v2"/></svg></span><div><b><span class="en-only">Free entry</span><span class="zh-only">免費入場</span></b><span><span class="en-only">No tickets, no booking — just turn up.</span><span class="zh-only">無需購票、無需報名，直接前來。</span></span></div></div>
+      <div class="why-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M5 17a2 2 0 0 1-2-2v-3l2-5a2 2 0 0 1 1.9-1.4h10.2A2 2 0 0 1 19 7l2 5v3a2 2 0 0 1-2 2M5 17v2M19 17v2M3 12h18"/><circle cx="7.5" cy="14.5" r="1"/><circle cx="16.5" cy="14.5" r="1"/></svg></span><div><b><span class="en-only">Free parking</span><span class="zh-only">免費泊車</span></b><span><span class="en-only">On a first-come, first-served basis.</span><span class="zh-only">先到先得。</span></span></div></div>
+      <div class="why-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b><span class="en-only">Family friendly</span><span class="zh-only">適合一家大小</span></b><span><span class="en-only">Something for every age to enjoy.</span><span class="zh-only">老中青幼皆宜。</span></span></div></div>
+      <div class="why-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1 7.8 7.8 7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><div><b><span class="en-only">For a good cause</span><span class="zh-only">為善最樂</span></b><span><span class="en-only">Supporting our church rebuilding project.</span><span class="zh-only">支持教會重建計劃。</span></span></div></div>
     </div>
   </div>
 </section>
@@ -562,13 +621,14 @@
       <h3>Finchley Catholic High School</h3>
       <div class="addr">School Hall, Woodside Lane, London N12 8TA</div>
       <ul>
-        <li><span>🚇</span><div><b><span class="en-only">By Tube</span><span class="zh-only">地鐵</span></b> <span class="en-only">Woodside Park (Northern line), approx. 10-min walk.</span><span class="zh-only">Woodside Park 站（Northern line），步行約 10 分鐘。</span></div></li>
-        <li><span>🚌</span><div><b><span class="en-only">By Bus</span><span class="zh-only">巴士</span></b> <span class="en-only">Routes serving Woodside Lane / North Finchley.</span><span class="zh-only">途經 Woodside Lane / North Finchley 一帶的路線。</span></div></li>
-        <li><span>🅿️</span><div><b><span class="en-only">Parking</span><span class="zh-only">泊車</span></b> <span class="en-only">Free on-site parking, first come first served.</span><span class="zh-only">場內提供免費泊車，先到先得。</span></div></li>
+        <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 10h14"/><circle cx="8.5" cy="13.5" r="1"/><circle cx="15.5" cy="13.5" r="1"/><path d="M8 17l-2 4M16 17l2 4"/></svg></span><div><b><span class="en-only">By Tube</span><span class="zh-only">地鐵</span></b> <span class="en-only">Woodside Park (Northern line), approx. 10-min walk.</span><span class="zh-only">Woodside Park 站（Northern line），步行約 10 分鐘。</span></div></li>
+        <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M4 11h16"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><path d="M7 18v2M17 18v2"/></svg></span><div><b><span class="en-only">By Bus</span><span class="zh-only">巴士</span></b> <span class="en-only">Routes serving Woodside Lane / North Finchley.</span><span class="zh-only">途經 Woodside Lane / North Finchley 一帶的路線。</span></div></li>
+        <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span><div><b><span class="en-only">Parking</span><span class="zh-only">泊車</span></b> <span class="en-only">Free on-site parking, first come first served.</span><span class="zh-only">場內提供免費泊車，先到先得。</span></div></li>
       </ul>
       <a class="btn btn-primary" style="margin-top:1.2rem" target="_blank" rel="noopener"
          href="https://www.google.com/maps/dir/?api=1&destination=Finchley+Catholic+High+School+N12+8TA">
-        <span class="en-only">🧭 Open in Google Maps</span><span class="zh-only">🧭 用 Google 地圖導航</span>
+        <svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="en-only">Open in Google Maps</span><span class="zh-only">用 Google 地圖導航</span>
       </a>
     </div>
     <div class="map">
@@ -672,6 +732,12 @@
     </a>
     <button class="cal-close" type="button" onclick="closeCalPop()"><span class="en-only">Cancel</span><span class="zh-only">取消</span></button>
   </div>
+</div>
+
+<!-- Lightbox for enlarged stall posters -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <button class="lb-close" type="button" aria-label="Close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
@@ -881,7 +947,21 @@
 
   function openCalPop(){ document.getElementById('calPop').classList.add('open'); }
   function closeCalPop(){ document.getElementById('calPop').classList.remove('open'); }
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCalPop(); });
+
+  // lightbox: enlarge stall posters on click
+  function openLightbox(src){
+    var lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src = src;
+    lb.classList.add('open');
+  }
+  function closeLightbox(){
+    var lb = document.getElementById('lightbox');
+    lb.classList.remove('open');
+    document.getElementById('lightbox-img').src = '';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ closeCalPop(); closeLightbox(); }
+  });
 </script>
 </body>
 </html>
