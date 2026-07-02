@@ -370,7 +370,9 @@
   /* faq */
   .faq{max-width:760px;margin:0 auto}
   details{background:var(--paper);border-radius:16px;box-shadow:var(--shadow);margin-bottom:.8rem;overflow:hidden}
-  summary{font-family:var(--display);font-weight:700;color:var(--ink);padding:1.05rem 1.3rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  summary{font-family:var(--display);font-weight:700;color:var(--ink);padding:1.05rem 1.3rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;-webkit-user-select:none;user-select:none;caret-color:transparent}
+  summary:focus{outline:none}
+  summary:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
   summary::-webkit-details-marker{display:none}
   summary:after{content:"+";font-size:1.4rem;color:var(--coral);transition:.2s}
   details[open] summary:after{transform:rotate(45deg)}
@@ -533,7 +535,7 @@
     <h2><span class="en-only">What you'll find</span><span class="zh-only">當日精彩內容</span></h2>
   </div>
   <div class="stalls">
-    <div class="stall stall-food" role="button" tabindex="0" aria-expanded="false" aria-controls="foodgal"
+    <div class="stall stall-food" role="button" tabindex="0" aria-expanded="false" aria-controls="foodgal" style="-webkit-user-select:none;user-select:none;caret-color:transparent"
          onclick="toggleFood(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFood(this);}">
       <div class="emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V2"/><path d="M8 2v20M18 2c-1.7 0-3 1.8-3 4.5S16 11 18 11v11"/></svg></div>
       <h3><span class="en-only">Food Stalls</span><span class="zh-only">美食攤位</span></h3>
