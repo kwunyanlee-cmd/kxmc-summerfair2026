@@ -909,6 +909,12 @@
   var shareUrl = window.location.href;
   var shareText = "KXMC Summer Fair — Sat 18 July 2026, 12–4pm, Finchley Catholic High School. Free entry! 夏日嘉年華，免費入場，歡迎帶屋企人朋友一齊嚟！";
   document.getElementById('shareWa').href = "https://wa.me/?text=" + encodeURIComponent(shareText + " " + shareUrl);
+  // Google Ads conversion: 聯絡-whatsapp — fires when the WhatsApp button is clicked
+  document.getElementById('shareWa').addEventListener('click', function(){
+    if(typeof gtag === 'function'){
+      gtag('event', 'conversion', {'send_to': 'AW-733026573/U7y0CJfsyd4BEI2yxN0C'});
+    }
+  });
   document.getElementById('shareFb').href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl);
 
   // Facebook button: on mobile, sharer.php dead-ends inside the FB app, so use the native
