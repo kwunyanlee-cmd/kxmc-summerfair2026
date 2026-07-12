@@ -343,6 +343,21 @@
   .map{border-radius:var(--rad);overflow:hidden;box-shadow:var(--shadow);min-height:300px}
   .map iframe{width:100%;height:100%;min-height:300px;border:0;display:block}
 
+  /* parking */
+  .parking-panel{margin-top:1.4rem;background:var(--paper);border-radius:var(--rad);padding:1.7rem;box-shadow:var(--shadow)}
+  .parking-panel h3{font-family:var(--display);font-weight:700;font-size:1.3rem;display:flex;align-items:center;gap:.55rem;margin-bottom:1rem;color:var(--ink)}
+  .parking-panel h3 svg{width:26px;height:26px;display:block;flex:0 0 auto;color:var(--coral)}
+  .parking-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:1.4rem;align-items:stretch}
+  .parking-opts{display:grid;gap:1rem}
+  .parking-opt{border:1px solid rgba(14,42,58,.08);background:#fdf8ee;border-radius:16px;padding:1.05rem 1.15rem}
+  .parking-opt b{font-family:var(--display);display:block;color:var(--ink);margin-bottom:.15rem}
+  .parking-opt span{color:var(--ink-soft);font-size:.95rem}
+  .parking-ask{display:flex;gap:.65rem;align-items:flex-start;margin-top:1rem;background:rgba(255,200,61,.18);border-radius:16px;padding:1rem 1.15rem;color:var(--ink-soft);font-size:.97rem;line-height:1.55}
+  .parking-ask svg{width:24px;height:24px;flex:0 0 auto;color:var(--coral)}
+  .parking-ask b{color:var(--ink)}
+  .parking-map{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);min-height:280px}
+  .parking-map iframe{width:100%;height:100%;min-height:280px;border:0;display:block}
+
   /* redevelopment — styled to match kxmc.org reprovision site */
   .redev{
     position:relative;overflow:hidden;border-radius:28px;
@@ -395,6 +410,7 @@
     .fact{border-right:0;border-bottom:2px dashed rgba(33,74,99,.12)}
     .fact:last-child{border-bottom:0}
     .loc-grid{grid-template-columns:1fr}
+    .parking-grid{grid-template-columns:1fr}
     .redev{text-align:center}
     .redev .rrt{justify-content:center}
     .redev-cta{align-items:center}
@@ -688,7 +704,7 @@
       <ul>
         <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 10h14"/><circle cx="8.5" cy="13.5" r="1"/><circle cx="15.5" cy="13.5" r="1"/><path d="M8 17l-2 4M16 17l2 4"/></svg></span><div><b><span class="en-only">By Tube</span><span class="zh-only">地鐵</span></b> <span class="en-only">Woodside Park (Northern line), approx. 10-min walk.</span><span class="zh-only">Woodside Park 站（Northern line），步行約 10 分鐘。</span></div></li>
         <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M4 11h16"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><path d="M7 18v2M17 18v2"/></svg></span><div><b><span class="en-only">By Bus</span><span class="zh-only">巴士</span></b> <span class="en-only">Routes serving Woodside Lane / North Finchley.</span><span class="zh-only">途經 Woodside Lane / North Finchley 一帶的路線。</span></div></li>
-        <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span><div><b><span class="en-only">Parking</span><span class="zh-only">泊車</span></b> <span class="en-only">Free on-site parking, first come first served.</span><span class="zh-only">場內提供免費泊車，先到先得。</span></div></li>
+        <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span><div><b><span class="en-only">Parking</span><span class="zh-only">泊車</span></b> <span class="en-only">Free on-site parking, plus on-street parking along Ridgeview Road — see below.</span><span class="zh-only">場內提供免費泊車，Ridgeview Road 亦設有路邊泊車位 — 詳見下方。</span></div></li>
       </ul>
       <a class="btn btn-primary" style="margin-top:1.2rem" target="_blank" rel="noopener"
          href="https://www.google.com/maps/dir/?api=1&destination=Finchley+Catholic+High+School+N12+8TA">
@@ -703,6 +719,44 @@
         referrerpolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps?q=Finchley%20Catholic%20High%20School%20N12%208TA&output=embed">
       </iframe>
+    </div>
+  </div>
+  <div class="parking-panel">
+    <h3>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>
+      <span class="en-only">Parking</span><span class="zh-only">泊車安排</span>
+    </h3>
+    <div class="parking-grid">
+      <div>
+        <div class="parking-opts">
+          <div class="parking-opt">
+            <b><span class="en-only">On-street — Ridgeview Road</span><span class="zh-only">路邊泊車 — Ridgeview Road</span></b>
+            <span><span class="en-only">Plenty of on-street parking is available along Ridgeview Road, just a short walk from the school.</span><span class="zh-only">Ridgeview Road 沿路設有充足的路邊泊車位，步行至學校只需幾分鐘。</span></span>
+          </div>
+          <div class="parking-opt">
+            <b><span class="en-only">School car park</span><span class="zh-only">學校停車場</span></b>
+            <span><span class="en-only">Free on-site parking, first come first served.</span><span class="zh-only">場內免費泊車，先到先得。</span></span>
+          </div>
+        </div>
+        <p class="parking-ask">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1 7.8 7.8 7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+          <span class="en-only"><b>If you're able, please park on Ridgeview Road</b> and leave the school car park for visitors who need it most — those with limited mobility and families with young children. Thank you!</span>
+          <span class="zh-only"><b>如果方便的話，請盡量泊在 Ridgeview Road</b>，把學校停車場留給最有需要的訪客 — 行動不便人士及帶同幼兒的家庭。謝謝您！</span>
+        </p>
+        <a class="btn btn-primary" style="margin-top:1.2rem" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/?api=1&destination=Ridgeview+Road+London+N20+0PE">
+          <svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="en-only">Open Ridgeview Road in Google Maps</span><span class="zh-only">用 Google 地圖前往 Ridgeview Road</span>
+        </a>
+      </div>
+      <div class="parking-map">
+        <iframe
+          title="Ridgeview Road parking map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Ridgeview%20Road%2C%20London%20N20%200PE&z=16&output=embed">
+        </iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -746,7 +800,7 @@
     </details>
     <details>
       <summary><span class="en-only">Is there parking?</span><span class="zh-only">設有泊車位嗎？</span></summary>
-      <div class="ans"><span class="en-only">Yes — free on-site parking is available on a first-come, first-served basis.</span><span class="zh-only">有 — 場內提供免費泊車，先到先得。</span></div>
+      <div class="ans"><span class="en-only">Yes — free on-site parking is available on a first-come, first-served basis, and there's plenty of on-street parking along Ridgeview Road nearby. If you're able, please park on Ridgeview Road and leave the school car park for visitors who need it most.</span><span class="zh-only">有 — 場內提供免費泊車，先到先得；附近 Ridgeview Road 沿路亦設有充足的路邊泊車位。如果方便的話，請盡量泊在 Ridgeview Road，把學校停車場留給最有需要的訪客。</span></div>
     </details>
     <details>
       <summary><span class="en-only">Can I pay by card at the stalls?</span><span class="zh-only">攤檔可以使用信用卡付款嗎？</span></summary>
