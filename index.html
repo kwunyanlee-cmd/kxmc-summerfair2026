@@ -108,6 +108,38 @@
   }
   .lang button.active{background:var(--ink);color:#fff}
 
+  /* volunteer area */
+  .topright{display:flex;align-items:center;gap:.6rem}
+  .vol-btn{display:inline-flex;align-items:center;gap:.4rem;border:2px solid var(--coral);color:var(--coral);background:transparent;border-radius:999px;padding:.3rem .85rem;cursor:pointer;font-family:var(--display);font-weight:700;font-size:.85rem;transition:.2s}
+  .vol-btn:hover{background:var(--coral);color:#fff}
+  .vol-btn svg{width:16px;height:16px;display:block;flex:0 0 auto}
+  @media(max-width:620px){
+    .vol-btn{padding:.3rem .5rem}
+    .vol-btn .en-only,.vol-btn .zh-only{display:none}
+    .brand{font-size:.82rem;gap:.4rem}
+    .lang button{padding:.3rem .6rem}
+    .topright{gap:.4rem}
+  }
+  .vol-overlay{position:fixed;inset:0;z-index:100;background:rgba(14,42,58,.55);display:none;align-items:center;justify-content:center;padding:1rem}
+  .vol-overlay.open{display:flex}
+  .vol-box{background:var(--paper);border-radius:20px;padding:1.7rem;max-width:400px;width:100%;box-shadow:var(--shadow-lg);position:relative}
+  .vol-box h3{font-family:var(--display);font-weight:700;font-size:1.25rem;color:var(--ink);margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
+  .vol-box h3 svg{width:22px;height:22px;color:var(--coral);flex:0 0 auto}
+  .vol-box .vol-intro{color:var(--ink-soft);font-size:.93rem;margin-bottom:1rem}
+  .vol-close{position:absolute;top:.8rem;right:.9rem;border:0;background:transparent;font-size:1.25rem;color:var(--ink-soft);cursor:pointer;line-height:1}
+  .vol-form{display:flex;gap:.6rem}
+  .vol-form input{flex:1;min-width:0;border:2px solid rgba(33,74,99,.18);border-radius:12px;padding:.55rem .8rem;font:inherit;font-size:.95rem;color:var(--ink);background:#fff}
+  .vol-form input:focus{outline:none;border-color:var(--sky)}
+  .vol-err{display:none;color:var(--coral);font-size:.88rem;margin-top:.6rem;font-weight:600}
+  .vol-err.show{display:block}
+  .vol-links{list-style:none;display:grid;gap:.7rem;margin:0 0 1.1rem;padding:0}
+  .vol-links a{display:flex;align-items:center;gap:.6rem;background:#fdf8ee;border:1px solid rgba(14,42,58,.08);border-radius:14px;padding:.85rem 1rem;color:var(--ink);font-family:var(--display);font-weight:700;text-decoration:none;transition:.15s}
+  .vol-links a:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .vol-links a svg{width:20px;height:20px;color:var(--coral);flex:0 0 auto}
+  .vol-links small{display:block;font-family:var(--body);font-weight:400;color:var(--ink-soft);font-size:.82rem}
+  .vol-note{color:var(--ink-soft);font-size:.85rem;font-style:italic;margin-bottom:1rem}
+  .vol-logout{border:0;background:transparent;color:var(--ink-soft);font-size:.85rem;cursor:pointer;text-decoration:underline;padding:0;font-family:var(--body)}
+
   /* ---------- hero ---------- */
   .hero{
     position:relative;text-align:center;
@@ -450,9 +482,15 @@
     <span class="en-only">Summer Fair 2026 @ KXMC</span>
     <span class="zh-only">夏日嘉年華 2026 @ 君王十字堂</span>
   </div>
-  <div class="lang" role="group" aria-label="Language / 語言">
-    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
-    <button id="btn-zh" onclick="setLang('zh')">中</button>
+  <div class="topright">
+    <button class="vol-btn" onclick="volOpen()" aria-haspopup="dialog" title="Volunteer login / 義工登入">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span class="en-only">Volunteers</span><span class="zh-only">義工專區</span>
+    </button>
+    <div class="lang" role="group" aria-label="Language / 語言">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-zh" onclick="setLang('zh')">中</button>
+    </div>
   </div>
 </div>
 
@@ -859,6 +897,42 @@
   <img id="lightbox-img" src="" alt="">
 </div>
 
+<!-- Volunteer area (login + links) -->
+<div class="vol-overlay" id="volOverlay" role="dialog" aria-modal="true" aria-labelledby="volTitle">
+  <div class="vol-box">
+    <button class="vol-close" type="button" onclick="volClose()" aria-label="Close">&times;</button>
+    <div id="volLogin">
+      <h3 id="volTitle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span class="en-only">Volunteer login</span><span class="zh-only">義工登入</span>
+      </h3>
+      <p class="vol-intro"><span class="en-only">This area is for Summer Fair volunteers. Enter the volunteer password to continue.</span><span class="zh-only">此專區供夏日嘉年華義工使用，請輸入義工密碼繼續。</span></p>
+      <div class="vol-form">
+        <input type="password" id="volPass" autocomplete="off" placeholder="Password / 密碼" onkeydown="if(event.key==='Enter')volSubmit()">
+        <button class="btn btn-primary" type="button" style="padding:.55rem 1.1rem" onclick="volSubmit()"><span class="en-only">Log in</span><span class="zh-only">登入</span></button>
+      </div>
+      <div class="vol-err" id="volErr"><span class="en-only">Incorrect password — please try again.</span><span class="zh-only">密碼不正確，請再試一次。</span></div>
+    </div>
+    <div id="volMenu" style="display:none">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="en-only">Volunteer area</span><span class="zh-only">義工專區</span>
+      </h3>
+      <p class="vol-intro"><span class="en-only">Welcome! Choose what you'd like to view:</span><span class="zh-only">歡迎！請選擇想查看的資料：</span></p>
+      <ul class="vol-links">
+        <li>
+          <a href="/volunteer-roster.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+            <span><span class="en-only">Volunteer roster (PDF)</span><span class="zh-only">義工更表（PDF）</span><small><span class="en-only">Who's helping where and when</span><span class="zh-only">各崗位及時段的義工安排</span></small></span>
+          </a>
+        </li>
+      </ul>
+      <p class="vol-note"><span class="en-only">More information coming soon.</span><span class="zh-only">更多資料稍後推出。</span></p>
+      <button class="vol-logout" type="button" onclick="volLogout()"><span class="en-only">Log out</span><span class="zh-only">登出</span></button>
+    </div>
+  </div>
+</div>
+
 <script>
   /* ---- FREE ENTRY bouncing ball: autonomous bounce + grab & throw ---- */
   (function(){
@@ -996,6 +1070,44 @@
     document.getElementById('btn-zh').classList.toggle('active', l==='zh');
     try{ localStorage.setItem('kxmc-lang', l); }catch(e){}
   }
+
+  // volunteer area — client-side gate only (static site): keeps casual visitors out,
+  // but the PDF itself is publicly reachable by anyone who has its direct URL
+  var VOL_HASH = "4b2f0464d7f9df1e527c8d33def75b5beec55a2ed2031ee065991d493062378e";
+  function volLoggedIn(){ try{ return localStorage.getItem('kxmc-vol') === '1'; }catch(e){ return false; } }
+  function volShow(){
+    var ok = volLoggedIn();
+    document.getElementById('volLogin').style.display = ok ? 'none' : 'block';
+    document.getElementById('volMenu').style.display = ok ? 'block' : 'none';
+  }
+  function volOpen(){
+    volShow();
+    document.getElementById('volOverlay').classList.add('open');
+    if(!volLoggedIn()){ setTimeout(function(){ document.getElementById('volPass').focus(); }, 50); }
+  }
+  function volClose(){
+    document.getElementById('volOverlay').classList.remove('open');
+    document.getElementById('volErr').classList.remove('show');
+    document.getElementById('volPass').value = '';
+  }
+  async function volSubmit(){
+    var v = document.getElementById('volPass').value;
+    var hash = '';
+    try{
+      var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+      hash = Array.prototype.map.call(new Uint8Array(buf), function(b){ return ('0'+b.toString(16)).slice(-2); }).join('');
+    }catch(e){}
+    if(hash === VOL_HASH){
+      try{ localStorage.setItem('kxmc-vol','1'); }catch(e){}
+      document.getElementById('volErr').classList.remove('show');
+      document.getElementById('volPass').value = '';
+      volShow();
+    } else {
+      document.getElementById('volErr').classList.add('show');
+    }
+  }
+  function volLogout(){ try{ localStorage.removeItem('kxmc-vol'); }catch(e){} volShow(); }
+  document.getElementById('volOverlay').addEventListener('click', function(e){ if(e.target === this) volClose(); });
   // Default language is English. Auto-switch to Chinese ONLY if the device language
   // is Traditional Chinese (zh-TW / zh-HK / zh-MO / zh-Hant). A previously saved manual
   // choice always wins.
