@@ -399,8 +399,10 @@
   .raffle-status{font-size:.88rem;font-weight:700;font-family:var(--display);color:var(--ink-soft);margin-bottom:1rem}
   .raffle-status.done{color:var(--leaf)}
   .raffle-rows{list-style:none;display:grid;gap:.55rem;margin:0;padding:0}
-  .raffle-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;background:#fdf8ee;border:1px solid rgba(14,42,58,.08);border-radius:14px;padding:.7rem .9rem}
+  .raffle-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem .8rem;background:#fdf8ee;border:1px solid rgba(14,42,58,.08);border-radius:14px;padding:.7rem .9rem}
   .raffle-row .prize{color:var(--ink);font-size:.95rem;font-weight:600}
+  .raffle-row .prize small{display:block;color:var(--ink-soft);font-weight:400;font-size:.8rem}
+  .raffle-nums{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:flex-end;margin-left:auto}
   .raffle-num{flex:0 0 auto;min-width:64px;text-align:center;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.04em;color:var(--ink-soft);background:#fff;border:2px dashed rgba(33,74,99,.25);border-radius:999px;padding:.25rem .8rem}
   .raffle-num.won{color:#fff;background:var(--coral);border:2px solid var(--coral)}
 
@@ -880,9 +882,16 @@
       </h3>
       <div class="raffle-status"><span class="en-only">To be drawn at 2pm</span><span class="zh-only">下午2時開獎</span></div>
       <ul class="raffle-rows">
-        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 1</span><span class="zh-only">獎品一</span></span><span class="raffle-num">—</span></li>
-        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 2</span><span class="zh-only">獎品二</span></span><span class="raffle-num">—</span></li>
-        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 3</span><span class="zh-only">獎品三</span></span><span class="raffle-num">—</span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">1 · b-MOLA BM10 portable air purifier <small>worth £149</small></span><span class="zh-only">1 · b-MOLA BM10 便攜式空氣清新機 <small>價值 £149</small></span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">2 · M&amp;S £25 gift cards</span><span class="zh-only">2 · M&amp;S £25 禮品卡</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">3 · Restaurant £20 vouchers</span><span class="zh-only">3 · 餐廳 £20 現金券</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">4 · 1-hour free trial piano lesson</span><span class="zh-only">4 · 一小時免費鋼琴體驗課</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">5 · 1-hour free trial science tutoring</span><span class="zh-only">5 · 一小時免費科學補習體驗課</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">6 · White Company diffuser</span><span class="zh-only">6 · The White Company 香薰</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">7 · Blender</span><span class="zh-only">7 · 攪拌機</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">8 · Wine</span><span class="zh-only">8 · 美酒</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">9 · Hamper</span><span class="zh-only">9 · 禮物籃</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">10 · …and more!</span><span class="zh-only">10 · 更多驚喜！</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
       </ul>
     </div>
     <div class="raffle-card" id="draw4pm">
@@ -892,9 +901,16 @@
       </h3>
       <div class="raffle-status"><span class="en-only">To be drawn at 4pm</span><span class="zh-only">下午4時開獎</span></div>
       <ul class="raffle-rows">
-        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 1</span><span class="zh-only">獎品一</span></span><span class="raffle-num">—</span></li>
-        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 2</span><span class="zh-only">獎品二</span></span><span class="raffle-num">—</span></li>
-        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 3</span><span class="zh-only">獎品三</span></span><span class="raffle-num">—</span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">1 · b-MOLA BM10 portable air purifier <small>worth £149</small></span><span class="zh-only">1 · b-MOLA BM10 便攜式空氣清新機 <small>價值 £149</small></span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">2 · M&amp;S £25 gift cards</span><span class="zh-only">2 · M&amp;S £25 禮品卡</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">3 · Restaurant £20 vouchers</span><span class="zh-only">3 · 餐廳 £20 現金券</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">4 · 1-hour free trial piano lesson</span><span class="zh-only">4 · 一小時免費鋼琴體驗課</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">5 · 1-hour free trial science tutoring</span><span class="zh-only">5 · 一小時免費科學補習體驗課</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">6 · White Company diffuser</span><span class="zh-only">6 · The White Company 香薰</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">7 · Blender</span><span class="zh-only">7 · 攪拌機</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">8 · Wine</span><span class="zh-only">8 · 美酒</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">9 · Hamper</span><span class="zh-only">9 · 禮物籃</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">10 · …and more!</span><span class="zh-only">10 · 更多驚喜！</span></span><span class="raffle-nums"><span class="raffle-num">—</span></span></li>
       </ul>
     </div>
   </div>
