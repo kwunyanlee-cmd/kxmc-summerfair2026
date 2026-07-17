@@ -390,6 +390,20 @@
   .parking-map{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);min-height:280px}
   .parking-map iframe{width:100%;height:100%;min-height:280px;border:0;display:block}
 
+  /* raffle results */
+  .raffle-intro{text-align:center;color:var(--ink-soft);max-width:56ch;margin:-.6rem auto 1.6rem;font-size:.98rem}
+  .raffle-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:start}
+  .raffle-card{background:var(--paper);border-radius:var(--rad);padding:1.6rem;box-shadow:var(--shadow)}
+  .raffle-card h3{font-family:var(--display);font-weight:700;font-size:1.25rem;color:var(--ink);display:flex;align-items:center;gap:.5rem;margin-bottom:.2rem}
+  .raffle-card h3 svg{width:24px;height:24px;color:var(--coral);flex:0 0 auto}
+  .raffle-status{font-size:.88rem;font-weight:700;font-family:var(--display);color:var(--ink-soft);margin-bottom:1rem}
+  .raffle-status.done{color:var(--leaf)}
+  .raffle-rows{list-style:none;display:grid;gap:.55rem;margin:0;padding:0}
+  .raffle-row{display:flex;align-items:center;justify-content:space-between;gap:.8rem;background:#fdf8ee;border:1px solid rgba(14,42,58,.08);border-radius:14px;padding:.7rem .9rem}
+  .raffle-row .prize{color:var(--ink);font-size:.95rem;font-weight:600}
+  .raffle-num{flex:0 0 auto;min-width:64px;text-align:center;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.04em;color:var(--ink-soft);background:#fff;border:2px dashed rgba(33,74,99,.25);border-radius:999px;padding:.25rem .8rem}
+  .raffle-num.won{color:#fff;background:var(--coral);border:2px solid var(--coral)}
+
   /* redevelopment — styled to match kxmc.org reprovision site */
   .redev{
     position:relative;overflow:hidden;border-radius:28px;
@@ -443,6 +457,7 @@
     .fact:last-child{border-bottom:0}
     .loc-grid{grid-template-columns:1fr}
     .parking-grid{grid-template-columns:1fr}
+    .raffle-grid{grid-template-columns:1fr}
     .redev{text-align:center}
     .redev .rrt{justify-content:center}
     .redev-cta{align-items:center}
@@ -844,6 +859,44 @@
       <summary><span class="en-only">Can I pay by card at the stalls?</span><span class="zh-only">攤檔可以使用信用卡付款嗎？</span></summary>
       <div class="ans"><span class="en-only">Stalls are run on the day — we'd suggest bringing some cash to be safe. Card may be available at some stalls.</span><span class="zh-only">攤檔於當日現場運作，建議攜帶少量現金較為穩妥，部分攤檔或可接受感應式付款。</span></div>
     </details>
+  </div>
+</section>
+
+<!-- RAFFLE RESULTS -->
+<section class="block" id="raffle">
+  <div class="sec-head">
+    <div class="kicker"><span class="en-only">Raffle draw</span><span class="zh-only">抽獎</span></div>
+    <h2><span class="en-only">Raffle results</span><span class="zh-only">抽獎結果</span></h2>
+  </div>
+  <p class="raffle-intro">
+    <span class="en-only">Two draws on the day — 2pm and 4pm. Winning numbers will be posted here right after each draw, so keep your ticket handy and refresh this page!</span>
+    <span class="zh-only">當日設兩輪抽獎 — 下午2時及4時。中獎號碼會於抽獎後即時在此公佈，請保留獎券並刷新此頁面！</span>
+  </p>
+  <div class="raffle-grid">
+    <div class="raffle-card" id="draw2pm">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span class="en-only">2pm draw</span><span class="zh-only">下午2時抽獎</span>
+      </h3>
+      <div class="raffle-status"><span class="en-only">To be drawn at 2pm</span><span class="zh-only">下午2時開獎</span></div>
+      <ul class="raffle-rows">
+        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 1</span><span class="zh-only">獎品一</span></span><span class="raffle-num">—</span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 2</span><span class="zh-only">獎品二</span></span><span class="raffle-num">—</span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 3</span><span class="zh-only">獎品三</span></span><span class="raffle-num">—</span></li>
+      </ul>
+    </div>
+    <div class="raffle-card" id="draw4pm">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span class="en-only">4pm draw</span><span class="zh-only">下午4時抽獎</span>
+      </h3>
+      <div class="raffle-status"><span class="en-only">To be drawn at 4pm</span><span class="zh-only">下午4時開獎</span></div>
+      <ul class="raffle-rows">
+        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 1</span><span class="zh-only">獎品一</span></span><span class="raffle-num">—</span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 2</span><span class="zh-only">獎品二</span></span><span class="raffle-num">—</span></li>
+        <li class="raffle-row"><span class="prize"><span class="en-only">Prize 3</span><span class="zh-only">獎品三</span></span><span class="raffle-num">—</span></li>
+      </ul>
+    </div>
   </div>
 </section>
 
